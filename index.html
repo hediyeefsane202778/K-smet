@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kısmet - Tanışma ve Evlilik Uygulaması</title>
+    <style>
+        body {
+            background-color: #ffffff;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            padding-bottom: 70px;
+        }
+        .splash-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 9999;
+            transition: opacity 0.6s ease;
+        }
+        .splash-heart {
+            width: 90px;
+            height: 90px;
+            margin-bottom: 15px;
+        }
+        .splash-title {
+            font-size: 36px;
+            font-weight: bold;
+            color: #333;
+            letter-spacing: 0.5px;
+            margin-bottom: 5px;
+        }
+        .splash-slogan {
+            font-size: 13px;
+            color: #666;
+            letter-spacing: 0.2px;
+        }
+        .terms-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 8888;
+        }
+        .terms-box {
+            background: #fff;
+            width: 88%;
+            max-width: 380px;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            text-align: left;
+        }
+        .terms-box h3 {
+            margin-top: 0;
+            color: #b8973c;
+            font-size: 17px;
+            text-align: center;
+        }
+        .terms-text-area {
+            font-size: 11.5px;
+            color: #555;
+            background: #f9f9f9;
+            padding: 12px;
+            border-radius: 8px;
+            height: 160px;
+            overflow-y: auto;
+            border: 1px solid #ddd;
+            line-height: 1.5;
+            margin-bottom: 15px;
+        }
+        .page-section {
+            display: none;
+        }
+        .page-section.active-page {
+            display: block;
+        }
+        
+        .explore-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 15px;
+            border-bottom: 1px solid #f0f0f0;
+            background: #fff;
+            position: sticky;
+            top: 0;
+            z-index: 90;
+        }
+        .explore-tabs {
+            display: flex;
+            gap: 20px;
+            font-size: 17px;
+            font-weight: bold;
+        }
+        .explore-tab-active {
+            color: #000;
+            border-bottom: 3px solid #d4af37;
+            padding-bottom: 3px;
+            cursor: pointer;
+        }
+        .explore-tab-inactive {
+            color: #bbb;
+            cursor: pointer;
+        }
+        .header-right {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+        .badge-coin-top {
+            background: #fff;
+            border: 1px solid #eee;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 13px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        .badge-icon-top {
+            background: #fff;
+            border: 1px solid #eee;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 13px;
+            position: relative;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            cursor: pointer;
+        }
+        .notification-dot {
+            position: absolute;
+            top: -3px;
+            right: -3px;
+            background: #ff3b30;
+            color: white;
+            font-size: 10px;
+            font-weight: bold;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .profiles-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            padding: 12px;
+        }
+        .profile-card-grid {
+            position: relative;
+            height: 270px;
+            border-radius: 16px;
+            overflow: hidden;
+            background: #eee;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        .profile-card-gradient {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 70%;
+            background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
+            z-index: 1;
+        }
+        .profile-card-info {
+            position: relative;
+            z-index: 2;
+            padding: 10px;
+            color: white;
+        }
+        .profile-card-info h4 {
+            margin: 0;
+            font-size: 15px;
+            font-weight: bold;
+        }
+        .profile-card-info p {
+            margin: 2px 0 6px 0;
+            font-size: 11px;
+            color: #ddd;
+        }
+        .profile-card-actions {
+            display: flex;
+            gap: 5px;
+            margin-bottom: 4px;
+        }
+        .btn-card-like {
+            background: rgba(255,255,255,0.25);
+            border: none;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 13px;
+            backdrop-filter: blur(5px);
+        }
+        .btn-card-follow {
+            flex: 1;
+            background: rgba(212, 175, 55, 0.85);
+            color: white;
+            border: none;
+            border-radius: 16px;
+            font-size: 10.5px;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 6px 0;
+        }
+        .btn-card-msg {
+            width: 100%;
+            background: linear-gradient(135deg, #dfbe64, #b8973c);
+            color: white;
+            border: none;
+            border-radius: 16px;
+            font-size: 11px;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            padding: 6px 0;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+        }
+
+        .feed-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 12px 15px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .post-card {
+            background: #fff;
+            border-bottom: 8px solid #f8f8f8;
+            padding: 15px 0;
+        }
+        .post-user-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 15px 10px 15px;
+        }
+        .user-left {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+        }
+        .user-avatar {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            border: 2px solid #d4af37;
+        }
+        .user-details h4 {
+            margin: 0;
+            font-size: 15px;
+            color: #222;
+        }
+        .user-details p {
+            margin: 2px 0 0 0;
+            font-size: 11px;
+            color: #777;
+        }
+        .post-text {
+            padding: 0 15px 10px 15px;
+            font-size: 14px;
+            color: #333;
+        }
+        .post-image-container {
+            width: 100%;
+            background: #fcfcfc;
+            height: 320px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #aaa;
+            font-size: 14px;
+            border-top: 1px solid #f0f0f0;
+            border-bottom: 1px solid #f0f0f0;
+            cursor: pointer;
+        }
+        .post-stats {
+            display: flex;
+            justify-content: flex-end;
+            padding: 8px 15px;
+            font-size: 12px;
+            color: #888;
+            gap: 15px;
+        }
+        .post-actions {
+            display: flex;
+            justify-content: space-around;
+            border-top: 1px solid #f0f0f0;
+            border-bottom: 1px solid #f0f0f0;
+            padding: 8px 0;
+        }
+        .action-btn {
+            background: none;
+            border: none;
+            font-size: 13px;
+            font-weight: bold;
+            color: #555;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .fab-btn {
+            position: fixed;
+            bottom: 75px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #dfbe64, #b8973c);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            cursor: pointer;
+            z-index: 99;
+        }
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+        .modal-box {
+            background: #fff;
+            width: 90%;
+            max-width: 400px;
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        .modal-box h3 {
+            margin-top: 0;
+            color: #b8973c;
+            font-size: 18px;
+        }
+        .modal-textarea {
+            width: 100%;
+            height: 100px;
+            padding: 10px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 14px;
+            resize: none;
+            margin-bottom: 12px;
+        }
+        .payment-container {
+            background: #fdfdfd;
+            border: 1px solid #e0e0e0;
+            margin: 15px;
+            padding: 20px;
+            border-radius: 15px;
+        }
+        .payment-container h3 {
+            margin-top: 0;
+            color: #b8973c;
+            font-size: 16px;
+        }
+        .form-group {
+            margin-bottom: 12px;
+        }
+        .form-group label {
+            display: block;
+            font-size: 13px;
+            margin-bottom: 5px;
+            color: #555;
+        }
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 14px;
+        }
+        .disclaimer-box {
+            font-size: 11px;
+            color: #666;
+            background: #f8f8f8;
+            padding: 10px;
+            border-radius: 6px;
+            max-height: 90px;
+            overflow-y: auto;
+            margin-bottom: 10px;
+            border: 1px solid #eee;
+            line-height: 1.4;
+        }
+        .checkbox-group {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            font-size: 12px;
+            color: #444;
+            margin-bottom: 15px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .checkbox-group input {
+            margin-top: 2px;
+            cursor: pointer;
+        }
+        .btn-gold {
+            background: linear-gradient(135deg, #dfbe64, #b8973c);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+        }
+        .admin-login-area {
+            padding: 15px;
+            display: none;
+            margin-top: 15px;
+        }
+        .admin-login-box {
+            background: #111;
+            color: #fff;
+            padding: 20px;
+            border-radius: 15px;
+            border: 1px solid #d4af37;
+        }
+        .admin-login-box h3 {
+            margin-top: 0;
+            color: #d4af37;
+            font-size: 16px;
+        }
+        .admin-input {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+            border: 1px solid #444;
+            border-radius: 8px;
+            font-size: 14px;
+            background: #222;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+        .btn-admin {
+            background: linear-gradient(135deg, #dfbe64, #b8973c);
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            width: 100%;
+        }
+        .admin-dashboard {
+            display: none;
+            padding: 15px;
+        }
+        .dashboard-card {
+            background: #1e1e1e;
+            color: #fff;
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            border-left: 4px solid #d4af37;
+        }
+        .dashboard-card h4 {
+            margin: 0 0 8px 0;
+            color: #d4af37;
+            font-size: 15px;
+        }
+        .dashboard-card p {
+            margin: 4px 0;
+            font-size: 12px;
+            color: #ccc;
+        }
+        .admin-action-row {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        .btn-approve {
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .btn-reject {
+            background: #dc3545;
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 11px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: white;
+            border-top: 1px solid #eee;
+            display: flex;
+            justify-content: space-around;
+            padding: 12px 0;
+            font-size: 12px;
+            font-weight: bold;
+            color: #666;
+            z-index: 100;
+        }
+        .nav-item {
+            cursor: pointer;
+            text-align: center;
+        }
+        .nav-item.active {
+            color: #b8973c;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="splash-screen" id="splash">
+        <svg class="splash-heart" viewBox="0 0 24 24" fill="none" stroke="#d4af37" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+        </svg>
+        <div class="splash-title">Kısmet</div>
+        <div class="splash-slogan">Gönülden gönüle, mutlu bir yuvaya...</div>
+    </div>
+
+    <div class="terms-overlay" id="termsModal">
+        <div class="terms-box">
+            <h3>⚠️ Kullanıcı Sözleşmesi ve Yasal Uyarı</h3>
+            <div class="terms-text-area">
+                <strong>1. Taraflar ve Mahiyet:</strong> İşbu 'Kısmet' platformu; kullanıcıların kendi iradeleriyle tanışması ve ilan paylaşması amacıyla kurulmuş bağımsız dijital bir mecradır. Geliştirici kesinlikle evlilik bürosu veya ticari aracı değildir.<br><br>
+                <strong>2. Sorumluluk Reddi:</strong> Platformdaki tüm iletişim ve paylaşımların sorumluluğu tamamen kullanıcılara aittir. Geliştirici hiçbir uyuşmazlıktan sorumlu tutulamaz.<br><br>
+                <strong>3. Abonelik ve İade Şartları:</strong> 350 TL tutarındaki ödeme 1 aylık sistem/sunucu katkı payıdır. Uygulama kapatılsa veya kullanılmasa dahi <strong>kesinlikle ücret iadesi yapılmaz</strong>. 1 aylık süre bitiminde yetkilerin devam etmesi için 350 TL tutarın tekrar yatırılması gerekmektedir.<br><br>
+                <strong>4. Onay:</strong> Giriş yapan herkes bu kuralları peşinen kabul eder.
+            </div>
+            <button class="btn-gold" onclick="acceptTerms()">Okudum, Kabul Ediyorum</button>
+        </div>
+    </div>
+
+    <!-- ANA SAYFA -->
+    <div id="page-anasayfa" class="page-section active-page">
+        <div class="explore-header">
+            <div class="explore-tabs">
+                <span class="explore-tab-active">Normal</span>
+                <span class="explore-tab-inactive">Seçkin ✨</span>
+            </div>
+            <div class="header-right">
+                <div class="badge-coin-top">🪙 0</div>
+                <div class="badge-icon-top" onclick="alert('3 yeni bildiriminiz var.')">
+                    🔔
+                    <div class="notification-dot">3</div>
+                </div>
+                <div class="badge-icon-top" onclick="alert('Filtreleme seçenekleri.')">⚙️</div>
+            </div>
+        </div>
+
+        <div class="profiles-grid">
+            <div class="profile-card-grid">
+                <div style="position:absolute; top:0; left:0; width:100%; height:100%; background: #ccc; display:flex; align-items:center; justify-content:center; color:#666; font-size:12px;">[Fotoğraf 1]</div>
+                <div class="profile-card-gradient"></div>
+                <div class="profile-card-info">
+                    <h4>Seren, 34</h4>
+                    <p>Bolu, Türkiye</p>
+                    <div class="profile-card-actions">
+                        <button class="btn-card-like" onclick="alert('Beğenildi! ❤️')">❤️</button>
+                        <button class="btn-card-follow" onclick="alert('🔒 Takip etmek için 350 TL Premium üyelik gereklidir!')">➕ Takip Et</button>
+                    </div>
+                    <button class="btn-card-msg" onclick="alert('🔒 Mesaj göndermek için 350 TL Premium üyelik gereklidir!')">💬 Mesaj Gönder</button>
+                </div>
+            </div>
+
+            <div class="profile-card-grid">
+                <div style="position:absolute; top:0; left:0; width:100%; height:100%; background: #bbb; display:flex; align-items:center; justify-content:center; color:#555; font-size:12px;">[Fotoğraf 2]</div>
+                <div class="profile-card-gradient"></div>
+                <div class="profile-card-info">
+                    <h4>Gamze, 25</h4>
+                    <p>Konya, Türkiye</p>
+                    <div class="profile-card-actions">
+                        <button class="btn-card-like" onclick="alert('Beğenildi! ❤️')">❤️</button>
+                        <button class="btn-card-follow" onclick="alert('🔒 Takip etmek için 350 TL Premium üyelik gereklidir!')">➕ Takip Et</button>
+                    </div>
+                    <button class="btn-card-msg" onclick="alert('🔒 Mesaj göndermek için 350 TL Premium üyelik gereklidir!')">💬 Mesaj Gönder</button>
+                </div>
+            </div>
+
+            <div class="profile-card-grid">
+                <div style="position:absolute; top:0; left:0; width:100%; height:100%; background: #aaa; display:flex; align-items:center; justify-content:center; color:#444; font-size:12px;">[Fotoğraf 3]</div>
+                <div class="profile-card-gradient"></div>
+                <div class="profile-card-info">
+                    <h4>Yaren, 22</h4>
+                    <p>Çanakkale, Türkiye</p>
+                    <div class="profile-card-actions">
+                        <button class="btn-card-like" onclick="alert('Beğenildi! ❤️')">❤️</button>
+                        <button class="btn-card-follow" onclick="alert('🔒 Takip etmek için 350 TL Premium üyelik gereklidir!')">➕ Takip Et</button>
+                    </div>
+                    <button class="btn-card-msg" onclick="alert('🔒 Mesaj göndermek için 350 TL Premium üyelik gereklidir!')">💬 Mesaj Gönder</button>
+                </div>
+            </div>
+
+            <div class="profile-card-grid">
+                <div style="position:absolute; top:0; left:0; width:100%; height:100%; background: #999; display:flex; align-items:center; justify-content:center; color:#333; font-size:12px;">[Fotoğraf 4]</div>
+                <div class="profile-card-gradient"></div>
+                <div class="profile-card-info">
+                    <h4>Zeynep, 27 ✓</h4>
+                    <p>İstanbul, Türkiye</p>
+                    <div class="profile-card-actions">
+                        <button class="btn-card-like" onclick="alert('Beğenildi! ❤️')">❤️</button>
+                        <button class="btn-card-follow" onclick="alert('🔒 Takip etmek için 350 TL Premium üyelik gereklidir!')">➕ Takip Et</button>
+                    </div>
+                    <button class="btn-card-msg" onclick="alert('🔒 Mesaj göndermek için 350 TL Premium üyelik gereklidir!')">💬 Mesaj Gönder</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- KEŞFET SEKMESİ -->
+    <div id="page-kesfet" class="page-section">
+        <div class="explore-header">
+            <div class="explore-tabs">
+                <span class="explore-tab-active">Normal</span>
+                <span class="explore-tab-inactive">Seçkin ✨</span>
+            </div>
+            <div class="header-right">
+                <div class="badge-coin-top">🪙 0</div>
+                <div class="badge-icon-top" onclick="alert('Bildirimler.')">🔔</div>
+            </div>
+        </div>
+
+        <div class="profiles-grid">
+            <div class="profile-card-grid">
+                <div style="position:absolute; top:0; left:0; width:100%; height:100%; background: #d2b48c; display:flex; align-items:center; justify-content:center; color:#fff; font-size:12px;">[Keşif 1]</div>
+                <div class="profile-card-gradient"></div>
+                <div class="profile-card-info">
+                    <h4>Elif, 24</h4>
+                    <p>İzmir, Türkiye</p>
+                    <div class="profile-card-actions">
+                        <button class="btn-card-like" onclick="alert('Beğenildi! ❤️')">❤️</button>
+                        <button class="btn-card-follow" onclick="alert('🔒 Takip etmek için 350 TL Premium üyelik gereklidir!')">➕ Takip Et</button>
+                    </div>
+                    <button class="btn-card-msg" onclick="alert('🔒 Mesaj göndermek için 350 TL Premium üyelik gereklidir!')">💬 Mesaj Gönder</button>
+                </div>
+            </div>
+
+            <div class="profile-card-grid">
+                <div style="position:absolute; top:0; left:0; width:100%; height:100%; background: #bc8f8f; display:flex; align-items:center; justify-content:center; color:#fff; font-size:12px;">[Keşif 2]</div>
+                <div class="profile-card-gradient"></div>
+                <div class="profile-card-info">
+                    <h4>Merve, 28</h4>
+                    <p>Ankara, Türkiye</p>
+                    <div class="profile-card-actions">
+                        <button class="btn-card-like" onclick="alert('Beğenildi! ❤️')">❤️</button>
+                        <button class="btn-card-follow" onclick="alert('🔒 Takip etmek için 350 TL Premium üyelik gereklidir!')">➕ Takip Et</button>
+                    </div>
+                    <button class="btn-card-msg" onclick="alert('🔒 Mesaj göndermek için 350 TL Premium üyelik gereklidir!')">💬 Mesaj Gönder</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- AKIŞ SEKMESİ -->
+    <div id="page-akis" class="page-section">
+        <div class="feed-header">
+            <div class="explore-tabs">
+                <span class="explore-tab-active">Sana Özel</span>
+                <span class="explore-tab-inactive">Takip Ettiklerim</span>
+            </div>
+            <div class="header-right">
+                <div class="badge-coin-top">🪙 0</div>
+                <div class="badge-icon-top">🔔<div class="notification-dot">3</div></div>
+            </div>
+        </div>
+
+        <div class="post-card">
+            <div class="post-user-info">
+                <div class="user-left" onclick="alert('Profil detayları...')">
+                    <div class="user-avatar">👤</div>
+                    <div class="user-details">
+                        <h4>Örnek Kullanıcı</h4>
+                        <p>Şehir, Türkiye</p>
+                    </div>
+                </div>
+                <button style="background:#d4af37; color:#fff; border:none; padding:6px 12px; border-radius:15px; font-size:12px; font-weight:bold; cursor:pointer;" onclick="alert('🔒 Takip Etmek için Premium Üyelik gereklidir!')">➕ Takip Et</button>
+            </div>
+            <div class="post-text">Ciddi evlilik ve mutlu bir yuva kurmak istiyorum.</div>
+            <div class="post-image-container">[ Profil Fotoğrafı ]</div>
+            <div class="post-stats">
+                <span>2 beğeni</span>
+                <span>1 istek</span>
+            </div>
+            <div class="post-actions">
+                <button class="action-btn" onclick="alert('Beğenildi! ❤️')">🤍 Beğen</button>
+                <button class="action-btn" onclick="alert('Yorum yapıldı.')">💬 Yorum</button>
+                <button class="action-btn" style="color:#d4af37;" onclick="alert('İstek gönderildi! 💌')">💌 İstek Gönder</button>
+            </div>
+        </div>
+
+        <div class="fab-btn" onclick="openModal()">+</div>
+    </div>
+
+    <div class="modal-overlay" id="postModal">
+        <div class="modal-box">
+            <h3>✨ Yeni Gönderi Paylaş</h3>
+            <textarea class="modal-textarea" placeholder="Neler düşünüyorsunuz?"></textarea>
+            <div style="display: flex; gap: 10px;">
+                <button class="btn-gold" style="background: #888;" onclick="closeModal()">İptal</button>
+                <button class="btn-gold" onclick="alert('Paylaşıldı!'); closeModal();">Paylaş</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MESAJLAR SEKMESİ -->
+    <div id="page-mesajlar" class="page-section">
+        <div style="padding: 20px;">
+            <h3>💬 Mesajlar ve Takip Yetkisi</h3>
+            <p style="font-size: 13px; color: #555;">Kullanıcıları takip etmek ve mesajlaşmak için 350 TL (1 Aylık) Premium Abonelik gerekmektedir.</p>
+            
+            <div class="payment-container">
+                <h3>💳 350 TL - 1 Aylık Premium Abonelik</h3>
+                <p style="font-size: 12px; color: #555; margin-bottom: 8px;">Ziraat Bankası hesabımıza havale yapın:</p>
+                <p style="font-size: 12px; background: #f1f1f1; padding: 8px; border-radius: 5px; margin-bottom: 12px;">
+                    <strong>Banka:</strong> Ziraat Bankası<br>
+                    <strong>IBAN:</strong> TR22 0001 0024 4882 0154 7550 07
+                </p>
+                <div class="form-group" style="margin-bottom: 10px;">
+                    <label>Telefon Numaranız:</label>
+                    <input type="text" id="userPhoneInput" placeholder="05XX XXX XX XX">
+                </div>
+                <div class="disclaimer-box">
+                    <strong>Sorumluluk Reddi:</strong> Ödenen 350 TL sistem katkı payıdır, <strong>kesinlikle iade edilmez</strong>.
+                </div>
+                <label class="checkbox-group">
+                    <input type="checkbox" id="kvkkCheck">
+                    <span>Sözleşmeyi ve iade yapılmayacağını onaylıyorum.</span>
+                </label>
+                <button class="btn-gold" onclick="checkPayment()">Ödemeyi Bildir / Yetkileri Aç</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- PROFİL SEKMESİ -->
+    <div id="page-profil" class="page-section">
+        <div style="padding: 20px;" id="normalProfileContent">
+            <h3 style="color: #b8973c;">Kısmet ✨</h3>
+            <p style="font-size: 13px; color: #666;">Profilinizi ve bilgilerinizi buradan yönetebilirsiniz.</p>
+            
+            <div style="margin-top: 40px; text-align: center;">
+                <button onclick="showAdminLogin()" style="background: none; border: none; color: #999; font-size: 11px; text-decoration: underline; cursor: pointer;">🔐 Yönetici Girişi</button>
+            </div>
+        </div>
+
+        <div class="admin-login-area" id="adminLoginArea">
+            <div class="admin-login-box">
+                <h3>🔐 Yönetici Girişi</h3>
+                <input type="password" id="adminPasswordInput" class="admin-input" placeholder="Yönetici Şifresi">
+                <button class="btn-admin" onclick="checkAdminLogin()">Giriş Yap</button>
+                <button onclick="hideAdminLogin()" style="background: none; border: none; color: #aaa; font-size: 11px; width: 100%; margin-top: 10px; cursor: pointer;">Vazgeç</button>
+            </div>
+        </div>
+
+        <div class="admin-dashboard" id="adminDashboardPanel">
+            <h3 style="color: #d4af37; margin-top: 0;">👑 Yönetici Paneli</h3>
+            <div class="dashboard-card">
+                <h4>🔔 Ödeme Bildirimi #1</h4>
+                <p><strong>Telefon:</strong> 0555 123 45 67</p>
+                <p><strong>Tutar:</strong> 350 TL</p>
+                <div class="admin-action-row">
+                    <button class="btn-approve" onclick="alert('Onaylandı!')">✅ Onayla</button>
+                    <button class="btn-reject" onclick="alert('Reddedildi.')">❌ Reddet</button>
+                </div>
+            </div>
+            <button class="btn-gold" style="background:#555; margin-top:10px;" onclick="lockAdminPanel()">🔒 Çıkış Yap</button>
+        </div>
+    </div>
+
+    <div class="bottom-nav">
+        <div class="nav-item active" onclick="switchPage('anasayfa', this)">🏠 Anasayfa</div>
+        <div class="nav-item" onclick="switchPage('kesfet', this)">🌍 Keşfet</div>
+        <div class="nav-item" onclick="switchPage('akis', this)">🔥 Akış</div>
+        <div class="nav-item" onclick="switchPage('mesajlar', this)">💬 Mesajlar</div>
+        <div class="nav-item" onclick="switchPage('profil', this)">👤 Profil</div>
+    </div>
+
+    <script>
+        setTimeout(function() {
+            var splash = document.getElementById('splash');
+            splash.style.opacity = '0';
+            setTimeout(function() { splash.style.display = 'none'; }, 600);
+        }, 1500);
+
+        function acceptTerms() {
+            document.getElementById('termsModal').style.display = 'none';
+        }
+
+        function switchPage(pageName, element) {
+            var pages = document.querySelectorAll('.page-section');
+            pages.forEach(p => p.classList.remove('active-page'));
+            document.getElementById('page-' + pageName).classList.add('active-page');
+
+            var navItems = document.querySelectorAll('.nav-item');
+            navItems.forEach(n => n.classList.remove('active'));
+            if(element) { element.classList.add('active'); }
+        }
+
+        function showAdminLogin() { document.getElementById('adminLoginArea').style.display = 'block'; }
+        function hideAdminLogin() { document.getElementById('adminLoginArea').style.display = 'none'; }
+
+        function checkAdminLogin() {
+            var password = document.getElementById('adminPasswordInput').value;
+            if (password === 'Zeynep1011') {
+                document.getElementById('adminLoginArea').style.display = 'none';
+                document.getElementById('normalProfileContent').style.display = 'none';
+                document.getElementById('adminDashboardPanel').style.display = 'block';
+                alert('🔓 Yönetici paneline giriş yapıldı!');
+            } else {
+                alert('❌ Hatalı şifre!');
+            }
+        }
+
+        function lockAdminPanel() {
+            document.getElementById('adminDashboardPanel').style.display = 'none';
+            document.getElementById('normalProfileContent').style.display = 'block';
+            document.getElementById('adminPasswordInput').value = '';
+            alert('🔒 Çıkış yapıldı.');
+        }
+
+        function openModal() { document.getElementById('postModal').style.display = 'flex'; }
+        function closeModal() { document.getElementById('postModal').style.display = 'none'; }
+
+        function checkPayment() {
+            var isChecked = document.getElementById('kvkkCheck').checked;
+            var phone = document.getElementById('userPhoneInput').value;
+            if (!isChecked) {
+                alert('⚠️ Lütfen abonelik ve iade şartları onay kutucuğunu işaretleyin.');
+            } else if (!phone) {
+                alert('⚠️ Lütfen telefon numaranızı girin.');
+            } else {
+                alert('Ödeme bildiriminiz yönetici paneline iletildi!');
+            }
+        }
+    </script>
+</body>
+</html>
