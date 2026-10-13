@@ -895,16 +895,17 @@
             alert('💬 ' + name + ' ile sohbet başlatılıyor...');
         }
 
-        var registeredProfiles = JSON.parse(localStorage.getItem('kismet_profiles')) || [
-            { id: 1, name: 'Seren', age: '34', city: 'Bolu, Türkiye', bio: 'Mutlu bir yuvaya adım atmak istiyorum.' },
-            { id: 2, name: 'Gamze', age: '25', city: 'Konya, Türkiye', bio: 'Ciddi düşünüyorsanız tanışalım.' },
-            { id: 3, name: 'Yaren', age: '22', city: 'Çanakkale, Türkiye', bio: 'Hayat arkadaşımı arıyorum.' },
-            { id: 4, name: 'Zeynep', age: '27 ✓', city: 'İstanbul, Türkiye', bio: 'Samimi ve dürüst bir ilişki arıyorum.' }
-        ];
+        // ÖRNEK PROFİLLER: Kullanıcıların siteyi boş görmemesi ve test edebilmesi için örnek veriler
+        var registeredProfiles = JSON.parse(localStorage.getItem('kismet_profiles'));
+        if (!registeredProfiles || registeredProfiles.length === 0) {
+            registeredProfiles = [
+                { id: 1, name: 'Zeynep', age: '27', city: 'İstanbul, Türkiye', bio: 'Ciddi evlilik düşünüyorum.' },
+                { id: 2, name: 'Fatih', age: '29', city: 'Ankara, Türkiye', bio: 'Hayırlı bir kısmet arıyorum.' }
+            ];
+            localStorage.setItem('kismet_profiles', JSON.stringify(registeredProfiles));
+        }
 
-        var userPosts = JSON.parse(localStorage.getItem('kismet_posts')) || [
-            { id: 1, author: 'Örnek Kullanıcı', city: 'Türkiye', text: 'Ciddi evlilik ve mutlu bir yuva kurmak istiyorum.', date: 'Bugün' }
-        ];
+        var userPosts = JSON.parse(localStorage.getItem('kismet_posts')) || [];
 
         function saveUserProfile() {
             var name = document.getElementById('regName').value.trim();
@@ -922,7 +923,7 @@
             registeredProfiles.unshift({ id: Date.now(), name: fullName, age: 'Yeni', city: city ? city + ', Türkiye' : 'Türkiye', bio: bio });
             localStorage.setItem('kismet_profiles', JSON.stringify(registeredProfiles));
 
-            alert('✅ Profiliniz başarıyla kaydedildi!');
+            alert('✅ Profiliniz başarıyla kaydedildi! Anasayfada listeleniyor.');
             document.getElementById('regName').value = '';
             document.getElementById('regSurname').value = '';
             document.getElementById('regPhone').value = '';
@@ -930,6 +931,7 @@
             document.getElementById('regBio').value = '';
 
             switchPage('anasayfa', document.querySelectorAll('.nav-item')[0]);
+            renderProfiles();
         }
 
         function renderProfiles() {
@@ -976,31 +978,35 @@
             if(!feedList) return;
 
             var feedHtml = '';
-            for (var j = 0; j < userPosts.length; j++) {
-                var post = userPosts[j];
-                feedHtml += '<div class="post-card">' +
-                    '<div class="post-user-info">' +
-                        '<div class="user-left">' +
-                            '<div class="user-avatar">👤</div>' +
-                            '<div class="user-details">' +
-                                '<h4>' + post.author + '</h4>' +
-                                '<p>' + post.city + ' • ' + post.date + '</p>' +
+            if(userPosts.length === 0) {
+                feedHtml = '<div style="text-align: center; padding: 30px; color: #888; font-size: 13px;">Henüz bir gönderi paylaşılmadı. Sağ alttaki + butonuna basarak ilk paylaşımı yapabilirsin!</div>';
+            } else {
+                for (var j = 0; j < userPosts.length; j++) {
+                    var post = userPosts[j];
+                    feedHtml += '<div class="post-card">' +
+                        '<div class="post-user-info">' +
+                            '<div class="user-left">' +
+                                '<div class="user-avatar">👤</div>' +
+                                '<div class="user-details">' +
+                                    '<h4>' + post.author + '</h4>' +
+                                    '<p>' + post.city + ' • ' + post.date + '</p>' +
+                                '</div>' +
                             '</div>' +
+                            '<button style="background:#d4af37; color:#fff; border:none; padding:6px 12px; border-radius:15px; font-size:12px; font-weight:bold; cursor:pointer;" onclick="openInAppChat(\'' + post.author + '\')">➕ Takip Et</button>' +
                         '</div>' +
-                        '<button style="background:#d4af37; color:#fff; border:none; padding:6px 12px; border-radius:15px; font-size:12px; font-weight:bold; cursor:pointer;" onclick="openInAppChat(\'' + post.author + '\')">➕ Takip Et</button>' +
-                    '</div>' +
-                    '<div class="post-text">' + post.text + '</div>' +
-                    '<div class="post-image-container">[ Profil Fotoğrafı ]</div>' +
-                    '<div class="post-stats">' +
-                        '<span>0 beğeni</span>' +
-                        '<span>0 istek</span>' +
-                    '</div>' +
-                    '<div class="post-actions">' +
-                        '<button class="action-btn" onclick="alert(\'Beğenildi! ❤️\')">🤍 Beğen</button>' +
-                        '<button class="action-btn" onclick="alert(\'Yorum yapıldı.\')">💬 Yorum</button>' +
-                        '<button class="action-btn" style="color:#d4af37;" onclick="openInAppChat(\'' + post.author + '\')">💌 Mesaj At</button>' +
-                    '</div>' +
-                '</div>';
+                        '<div class="post-text">' + post.text + '</div>' +
+                        '<div class="post-image-container">[ Profil Fotoğrafı ]</div>' +
+                        '<div class="post-stats">' +
+                            '<span>0 beğeni</span>' +
+                            '<span>0 istek</span>' +
+                        '</div>' +
+                        '<div class="post-actions">' +
+                            '<button class="action-btn" onclick="alert(\'Beğenildi! ❤️\')">🤍 Beğen</button>' +
+                            '<button class="action-btn" onclick="alert(\'Yorum yapıldı.\')">💬 Yorum</button>' +
+                            '<button class="action-btn" style="color:#d4af37;" onclick="openInAppChat(\'Kullanıcı\')">💌 Mesaj At</button>' +
+                        '</div>' +
+                    '</div>';
+                }
             }
             feedList.innerHTML = feedHtml;
         }
