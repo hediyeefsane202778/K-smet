@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="tr">
 <head>
@@ -15,691 +14,237 @@
             padding-bottom: 70px;
         }
         .splash-screen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: #ffffff;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            z-index: 9999;
-            transition: opacity 0.5s ease;
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background-color: #ffffff; display: flex; flex-direction: column;
+            align-items: center; justify-content: center; z-index: 9999; transition: opacity 0.5s ease;
         }
         .terms-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.8);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 8888;
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.8); display: flex; align-items: center; justify-content: center; z-index: 8888;
         }
         .terms-box {
-            background: #fff;
-            width: 88%;
-            max-width: 380px;
-            padding: 20px;
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
-            text-align: left;
+            background: #fff; width: 88%; max-width: 380px; padding: 20px;
+            border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.3); text-align: left;
         }
-        .terms-box h3 {
-            margin-top: 0;
-            color: #b8973c;
-            font-size: 17px;
-            text-align: center;
-        }
+        .terms-box h3 { margin-top: 0; color: #b8973c; font-size: 17px; text-align: center; }
         .terms-text-area {
-            font-size: 11.5px;
-            color: #555;
-            background: #f9f9f9;
-            padding: 12px;
-            border-radius: 8px;
-            height: 150px;
-            overflow-y: auto;
-            border: 1px solid #ddd;
-            line-height: 1.5;
-            margin-bottom: 15px;
+            font-size: 11.5px; color: #555; background: #f9f9f9; padding: 12px;
+            border-radius: 8px; height: 150px; overflow-y: auto; border: 1px solid #ddd;
+            line-height: 1.5; margin-bottom: 15px;
         }
-        .page-section {
-            display: none;
-        }
-        .page-section.active-page {
-            display: block;
-        }
+        .page-section { display: none; }
+        .page-section.active-page { display: block; }
         .explore-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 12px 15px;
-            border-bottom: 1px solid #f0f0f0;
-            background: #fff;
-            position: sticky;
-            top: 0;
-            z-index: 90;
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 12px 15px; border-bottom: 1px solid #f0f0f0; background: #fff;
+            position: sticky; top: 0; z-index: 90;
         }
-        .explore-tabs {
-            display: flex;
-            gap: 18px;
-            font-size: 17px;
-            font-weight: 500;
-        }
-        .explore-tab-active {
-            color: #111;
-            font-weight: bold;
-            border-bottom: 3px solid #d4af37;
-            padding-bottom: 3px;
-            cursor: pointer;
-        }
-        .explore-tab-inactive {
-            color: #aaa;
-            font-weight: 400;
-            cursor: pointer;
-        }
-        .header-right {
-            display: flex;
-            gap: 10px;
-            align-items: center;
-        }
+        .explore-tabs { display: flex; gap: 18px; font-size: 17px; font-weight: 500; }
+        .explore-tab-active { color: #111; font-weight: bold; border-bottom: 3px solid #d4af37; padding-bottom: 3px; cursor: pointer; }
+        .explore-tab-inactive { color: #aaa; font-weight: 400; cursor: pointer; }
+        .header-right { display: flex; gap: 10px; align-items: center; }
         .badge-coin-top {
             background: linear-gradient(135deg, #fdf6e2, #f5e2b3);
-            border: 1px solid #e6d088;
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 13px;
-            font-weight: bold;
-            color: #8a7324;
-            display: flex;
-            align-items: center;
-            gap: 4px;
+            border: 1px solid #e6d088; padding: 5px 12px; border-radius: 20px;
+            font-size: 13px; font-weight: bold; color: #8a7324;
+            display: flex; align-items: center; gap: 4px;
         }
         .badge-icon-top {
-            background: #fff;
-            border: 1px solid #eee;
-            padding: 7px 10px;
-            border-radius: 50%;
-            font-size: 14px;
-            cursor: pointer;
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 20px;
-            height: 20px;
+            background: #fff; border: 1px solid #eee; padding: 7px 10px;
+            border-radius: 50%; font-size: 14px; cursor: pointer; position: relative;
+            display: flex; align-items: center; justify-content: center; width: 20px; height: 20px;
         }
         .notification-dot {
-            position: absolute;
-            top: -2px;
-            right: -2px;
-            background: #ff3b30;
-            color: white;
-            font-size: 9px;
-            font-weight: bold;
-            width: 14px;
-            height: 14px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 1px solid #fff;
+            position: absolute; top: -2px; right: -2px; background: #ff3b30; color: white;
+            font-size: 9px; font-weight: bold; width: 14px; height: 14px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center; border: 1px solid #fff;
         }
-        .profiles-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px;
-            padding: 12px;
-        }
+        .profiles-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; padding: 12px; }
         .profile-card-grid {
-            position: relative;
-            height: 270px;
-            border-radius: 16px;
-            overflow: hidden;
-            background: #e5e5e5;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
+            position: relative; height: 270px; border-radius: 16px; overflow: hidden;
+            background: #e5e5e5; display: flex; flex-direction: column; justify-content: flex-end;
             box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
         .profile-card-image-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-size: cover;
-            background-position: center;
-            cursor: pointer;
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background-size: cover; background-position: center; cursor: pointer;
         }
         .profile-card-gradient {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 70%;
-            background: linear-gradient(to top, rgba(0,0,0,0.9), transparent);
-            z-index: 1;
-            pointer-events: none;
+            position: absolute; bottom: 0; left: 0; width: 100%; height: 70%;
+            background: linear-gradient(to top, rgba(0,0,0,0.9), transparent); z-index: 1; pointer-events: none;
         }
-        .profile-card-info {
-            position: relative;
-            z-index: 2;
-            padding: 10px;
-            color: white;
-        }
-        .profile-card-info h4 {
-            margin: 0;
-            font-size: 15px;
-            font-weight: 600;
-            cursor: pointer;
-        }
-        .profile-card-info p {
-            margin: 2px 0 6px 0;
-            font-size: 11px;
-            color: #ddd;
-            font-weight: 300;
-        }
-        .profile-card-actions {
-            display: flex;
-            gap: 5px;
-            margin-bottom: 4px;
-        }
+        .profile-card-info { position: relative; z-index: 2; padding: 10px; color: white; }
+        .profile-card-info h4 { margin: 0; font-size: 15px; font-weight: 600; cursor: pointer; }
+        .profile-card-info p { margin: 2px 0 6px 0; font-size: 11px; color: #ddd; font-weight: 300; }
+        .profile-card-actions { display: flex; gap: 5px; margin-bottom: 4px; }
         .btn-card-like {
-            background: rgba(255,255,255,0.25);
-            border: none;
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            font-size: 13px;
+            background: rgba(255,255,255,0.25); border: none; width: 32px; height: 32px;
+            border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 13px;
         }
         .btn-card-follow {
-            flex: 1;
-            background: rgba(212, 175, 55, 0.85);
-            color: white;
-            border: none;
-            border-radius: 16px;
-            font-size: 10.5px;
-            font-weight: 500;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 6px 0;
+            flex: 1; background: rgba(212, 175, 55, 0.85); color: white; border: none;
+            border-radius: 16px; font-size: 10.5px; font-weight: 500; cursor: pointer;
+            display: flex; align-items: center; justify-content: center; padding: 6px 0;
         }
         .btn-card-msg {
-            width: 100%;
-            background: linear-gradient(135deg, #dfbe64, #b8973c);
-            color: white;
-            border: none;
-            border-radius: 16px;
-            font-size: 11px;
-            font-weight: 500;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 4px;
+            width: 100%; background: linear-gradient(135deg, #dfbe64, #b8973c); color: white;
+            border: none; border-radius: 16px; font-size: 11px; font-weight: 500; cursor: pointer;
+            display: flex; align-items: center; justify-content: center; gap: 4px;
         }
         .feed-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 12px 15px;
-            border-bottom: 1px solid #f0f0f0;
-            background: #fff;
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 12px 15px; border-bottom: 1px solid #f0f0f0; background: #fff;
         }
-        .post-card {
-            background: #fff;
-            border-bottom: 8px solid #f0f0f0;
-            padding: 15px 0;
-            margin-bottom: 5px;
-        }
-        .post-user-info {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0 15px 10px 15px;
-        }
-        .user-left {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            cursor: pointer;
-        }
+        .post-card { background: #fff; border-bottom: 8px solid #f0f0f0; padding: 15px 0; margin-bottom: 5px; }
+        .post-user-info { display: flex; justify-content: space-between; align-items: center; padding: 0 15px 10px 15px; }
+        .user-left { display: flex; align-items: center; gap: 10px; cursor: pointer; }
         .user-avatar {
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            background: #f0f0f0;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 18px;
-            border: 2px solid #d4af37;
-            overflow: hidden;
+            width: 45px; height: 45px; border-radius: 50%; background: #f0f0f0;
+            display: flex; align-items: center; justify-content: center; font-size: 18px;
+            border: 2px solid #d4af37; overflow: hidden; position: relative;
         }
-        .user-avatar img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        .user-details h4 {
-            margin: 0;
-            font-size: 15px;
-            color: #222;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-        .verified-badge {
-            color: #d4af37;
-            font-size: 13px;
-        }
-        .user-details p {
-            margin: 2px 0 0 0;
-            font-size: 11px;
-            color: #777;
-        }
-        .post-text {
-            padding: 0 15px 10px 15px;
-            font-size: 14px;
-            color: #333;
-        }
+        .user-avatar img { width: 100%; height: 100%; object-fit: cover; }
+        .user-details h4 { margin: 0; font-size: 15px; color: #222; font-weight: 600; display: flex; align-items: center; gap: 5px; }
+        .verified-badge { color: #d4af37; font-size: 13px; }
+        .user-details p { margin: 2px 0 0 0; font-size: 11px; color: #777; }
+        .post-text { padding: 0 15px 10px 15px; font-size: 14px; color: #333; }
         .post-media-container {
-            width: 100%;
-            background: #000;
-            max-height: 400px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            overflow: hidden;
-            cursor: pointer;
+            width: 100%; background: #000; max-height: 400px;
+            display: flex; align-items: center; justify-content: center; overflow: hidden; cursor: pointer;
         }
-        .post-media-container img {
-            width: 100%;
-            height: auto;
-            max-height: 400px;
-            object-fit: cover;
-        }
-        .post-stats {
-            display: flex;
-            justify-content: flex-end;
-            padding: 8px 15px;
-            font-size: 11.5px;
-            color: #888;
-            gap: 12px;
-            border-bottom: 1px solid #f5f5f5;
-        }
-        .post-actions {
-            display: flex;
-            justify-content: space-around;
-            padding: 10px 0 2px 0;
-        }
-        .action-btn {
-            background: none;
-            border: none;
-            font-size: 13px;
-            font-weight: 500;
-            color: #555;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
+        .post-media-container img { width: 100%; height: auto; max-height: 400px; object-fit: cover; }
+        .post-stats { display: flex; justify-content: flex-end; padding: 8px 15px; font-size: 11.5px; color: #888; gap: 12px; border-bottom: 1px solid #f5f5f5; }
+        .post-actions { display: flex; justify-content: space-around; padding: 10px 0 2px 0; }
+        .action-btn { background: none; border: none; font-size: 13px; font-weight: 500; color: #555; cursor: pointer; display: flex; align-items: center; gap: 6px; }
+        .comment-section-box { padding: 10px 15px; background: #fafafa; border-top: 1px solid #eee; display: block; }
+        .comment-list { font-size: 12px; color: #444; margin-bottom: 8px; max-height: 120px; overflow-y: auto; }
+        .comment-input-row { display: flex; gap: 6px; }
+        .comment-input-row input { flex: 1; padding: 6px 10px; border: 1px solid #ccc; border-radius: 6px; font-size: 12px; }
         .lightbox-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.95);
-            display: none;
-            align-items: center;
-            justify-content: center;
-            z-index: 3000;
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.95); display: none; align-items: center; justify-content: center; z-index: 3000;
         }
-        .lightbox-content {
-            max-width: 95%;
-            max-height: 90vh;
-            border-radius: 10px;
-            object-fit: contain;
-        }
+        .lightbox-content { max-width: 95%; max-height: 90vh; border-radius: 10px; object-fit: contain; }
         .lightbox-close {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background: rgba(255,255,255,0.2);
-            color: white;
-            border: none;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            font-size: 20px;
-            font-weight: bold;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            position: absolute; top: 20px; right: 20px; background: rgba(255,255,255,0.2);
+            color: white; border: none; width: 40px; height: 40px; border-radius: 50%;
+            font-size: 20px; font-weight: bold; cursor: pointer; display: flex; align-items: center; justify-content: center;
         }
         .profile-detail-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: #fff;
-            display: none;
-            flex-direction: column;
-            z-index: 2000;
-            overflow-y: auto;
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: #fff; display: none; flex-direction: column; z-index: 2000; overflow-y: auto;
         }
         .profile-detail-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 15px;
-            border-bottom: 1px solid #eee;
-            background: #fff;
-            position: sticky;
-            top: 0;
-            z-index: 10;
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 15px; border-bottom: 1px solid #eee; background: #fff; position: sticky; top: 0; z-index: 10;
         }
         .back-btn {
-            background: #f0f0f0;
-            border: none;
-            width: 35px;
-            height: 35px;
-            border-radius: 50%;
-            font-size: 16px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            background: #f0f0f0; border: none; width: 35px; height: 35px; border-radius: 50%;
+            font-size: 16px; cursor: pointer; display: flex; align-items: center; justify-content: center;
         }
-        .profile-detail-body {
-            padding: 20px;
-            text-align: center;
-        }
+        .profile-detail-body { padding: 20px; text-align: center; }
         .big-profile-photo {
-            width: 100%;
-            max-height: 380px;
-            border-radius: 20px;
-            overflow: hidden;
-            background: #000;
-            margin-bottom: 15px;
-            cursor: pointer;
+            width: 100%; max-height: 380px; border-radius: 20px; overflow: hidden;
+            background: #000; margin-bottom: 15px; cursor: pointer; position: relative;
         }
-        .big-profile-photo img {
-            width: 100%;
-            height: 100%;
-            max-height: 380px;
-            object-fit: cover;
-        }
+        .big-profile-photo img { width: 100%; height: 100%; max-height: 380px; object-fit: cover; }
         .profile-stats-row {
-            display: flex;
-            justify-content: space-around;
-            margin: 15px 0;
-            padding: 12px 0;
-            border-top: 1px solid #eee;
-            border-bottom: 1px solid #eee;
-            font-size: 13px;
-            color: #555;
+            display: flex; justify-content: space-around; margin: 15px 0; padding: 12px 0;
+            border-top: 1px solid #eee; border-bottom: 1px solid #eee; font-size: 13px; color: #555;
         }
-        .profile-action-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 25px;
-            margin-top: 25px;
-            align-items: center;
-        }
+        .profile-action-buttons { display: flex; justify-content: center; gap: 25px; margin-top: 25px; align-items: center; }
         .action-circle-btn {
-            width: 55px;
-            height: 55px;
-            border-radius: 50%;
-            border: 1px solid #e0e0e0;
-            background: #fff;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 22px;
-            cursor: pointer;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+            width: 55px; height: 55px; border-radius: 50%; border: 1px solid #e0e0e0;
+            background: #fff; display: flex; align-items: center; justify-content: center;
+            font-size: 22px; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.08);
         }
-        .action-circle-btn.star {
-            background: #ffcc00;
-            border-color: #e6b800;
-        }
-        .action-circle-btn.like {
-            background: #c85a32;
-            border-color: #b04d27;
-            color: white;
-        }
+        .action-circle-btn.star { background: #ffcc00; border-color: #e6b800; }
+        .action-circle-btn.like { background: #c85a32; border-color: #b04d27; color: white; }
         .status-badge-box {
-            background: #fdf6e2;
-            border: 1px solid #f2e2b3;
-            color: #8a7324;
-            padding: 10px 15px;
-            border-radius: 12px;
-            font-size: 13px;
-            font-weight: 500;
-            margin: 10px 0;
-            display: none;
-            text-align: left;
+            background: #fdf6e2; border: 1px solid #f2e2b3; color: #8a7324;
+            padding: 10px 15px; border-radius: 12px; font-size: 13px; font-weight: 500; margin: 10px 0; display: none; text-align: left;
         }
         .info-badge-box {
-            background: #f5f5f5;
-            border: 1px solid #e0e0e0;
-            color: #444;
-            padding: 10px 15px;
-            border-radius: 12px;
-            font-size: 13px;
-            font-weight: 500;
-            margin: 10px 0;
-            display: none;
-            text-align: left;
+            background: #f5f5f5; border: 1px solid #e0e0e0; color: #444;
+            padding: 10px 15px; border-radius: 12px; font-size: 13px; font-weight: 500; margin: 10px 0; display: none; text-align: left;
         }
         .fab-btn {
-            position: fixed;
-            bottom: 75px;
-            right: 20px;
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(135deg, #dfbe64, #b8973c);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-            cursor: pointer;
-            z-index: 99;
+            position: fixed; bottom: 75px; right: 20px; width: 50px; height: 50px;
+            background: linear-gradient(135deg, #dfbe64, #b8973c); color: white; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center; font-size: 24px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2); cursor: pointer; z-index: 99;
         }
         .modal-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.5);
-            display: none;
-            align-items: center;
-            justify-content: center;
-            z-index: 1000;
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.5); display: none; align-items: center; justify-content: center; z-index: 1000;
         }
-        .modal-box {
-            background: #fff;
-            width: 90%;
-            max-width: 400px;
-            padding: 20px;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-        }
-        .modal-box h3 {
-            margin-top: 0;
-            color: #b8973c;
-            font-size: 18px;
-        }
+        .modal-box { background: #fff; width: 90%; max-width: 400px; padding: 20px; border-radius: 15px; box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
+        .modal-box h3 { margin-top: 0; color: #b8973c; font-size: 18px; }
         .modal-textarea {
-            width: 100%;
-            height: 90px;
-            padding: 10px;
-            box-sizing: border-box;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            font-size: 14px;
-            resize: none;
-            margin-bottom: 10px;
+            width: 100%; height: 90px; padding: 10px; box-sizing: border-box;
+            border: 1px solid #ccc; border-radius: 8px; font-size: 14px; resize: none; margin-bottom: 10px;
         }
-        .payment-container {
-            background: #fdfdfd;
-            border: 1px solid #e0e0e0;
-            margin: 15px;
-            padding: 20px;
-            border-radius: 15px;
-        }
-        .payment-container h3 {
-            margin-top: 0;
-            color: #b8973c;
-            font-size: 16px;
-        }
-        .form-group {
-            margin-bottom: 12px;
-        }
-        .form-group label {
-            display: block;
-            font-size: 13px;
-            margin-bottom: 5px;
-            color: #555;
-            font-weight: 500;
-        }
+        .payment-container { background: #fdfdfd; border: 1px solid #e0e0e0; margin: 15px; padding: 20px; border-radius: 15px; }
+        .payment-container h3 { margin-top: 0; color: #b8973c; font-size: 16px; }
+        .form-group { margin-bottom: 12px; }
+        .form-group label { display: block; font-size: 13px; margin-bottom: 5px; color: #555; font-weight: 500; }
         .form-group input, .form-group select, .form-group textarea {
-            width: 100%;
-            padding: 10px;
-            box-sizing: border-box;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            font-size: 14px;
-            background: #fff;
+            width: 100%; padding: 10px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 8px; font-size: 14px; background: #fff;
         }
-        .checkbox-group {
-            display: flex;
-            align-items: flex-start;
-            gap: 8px;
-            font-size: 12px;
-            color: #444;
-            margin-bottom: 15px;
-            cursor: pointer;
-        }
-        .refund-notice {
-            font-size: 11.5px;
-            color: #d9534f;
-            font-weight: bold;
-            margin-bottom: 12px;
-        }
+        .checkbox-group { display: flex; align-items: flex-start; gap: 8px; font-size: 12px; color: #444; margin-bottom: 15px; cursor: pointer; }
+        .refund-notice { font-size: 11.5px; color: #d9534f; font-weight: bold; margin-bottom: 12px; }
         .btn-gold {
-            background: linear-gradient(135deg, #dfbe64, #b8973c);
-            color: white;
-            border: none;
-            padding: 12px 25px;
-            border-radius: 25px;
-            font-weight: 600;
-            cursor: pointer;
-            width: 100%;
+            background: linear-gradient(135deg, #dfbe64, #b8973c); color: white; border: none;
+            padding: 12px 25px; border-radius: 25px; font-weight: 600; cursor: pointer; width: 100%;
         }
-        .admin-login-area, .admin-dashboard {
-            padding: 15px;
-            display: none;
-        }
-        .admin-login-box {
-            background: #111;
-            color: #fff;
-            padding: 20px;
-            border-radius: 15px;
-            border: 1px solid #d4af37;
-        }
+        .admin-login-area, .admin-dashboard { padding: 15px; display: none; }
+        .admin-login-box { background: #111; color: #fff; padding: 20px; border-radius: 15px; border: 1px solid #d4af37; }
         .admin-input {
-            width: 100%;
-            padding: 10px;
-            box-sizing: border-box;
-            border: 1px solid #444;
-            border-radius: 8px;
-            font-size: 14px;
-            background: #222;
-            color: #fff;
-            margin-bottom: 10px;
+            width: 100%; padding: 10px; box-sizing: border-box; border: 1px solid #444;
+            border-radius: 8px; font-size: 14px; background: #222; color: #fff; margin-bottom: 10px;
         }
-        .dashboard-card {
-            background: #1e1e1e;
-            color: #fff;
-            padding: 15px;
-            border-radius: 12px;
-            margin-bottom: 15px;
-            border-left: 4px solid #d4af37;
-        }
-        .dashboard-card h4 {
-            margin: 0 0 8px 0;
-            color: #d4af37;
-        }
-        .admin-action-row {
-            display: flex;
-            gap: 10px;
-            margin-top: 10px;
-            flex-wrap: wrap;
-        }
-        .btn-approve {
-            background: #28a745;
-            color: white;
-            border: none;
-            padding: 6px 12px;
-            border-radius: 6px;
-            font-size: 11px;
-            cursor: pointer;
-        }
-        .chat-box {
-            padding: 15px;
-        }
+        .dashboard-card { background: #1e1e1e; color: #fff; padding: 15px; border-radius: 12px; margin-bottom: 15px; border-left: 4px solid #d4af37; }
+        .dashboard-card h4 { margin: 0 0 8px 0; color: #d4af37; }
+        .admin-action-row { display: flex; gap: 10px; margin-top: 10px; flex-wrap: wrap; }
+        .btn-approve { background: #28a745; color: white; border: none; padding: 6px 12px; border-radius: 6px; font-size: 11px; cursor: pointer; }
+        .chat-box { padding: 15px; }
         .bottom-nav {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background: white;
-            border-top: 1px solid #eee;
-            display: flex;
-            justify-content: space-around;
-            padding: 8px 0 10px 0;
-            font-size: 11.5px;
-            font-weight: 500;
-            color: #888;
-            z-index: 100;
-            box-shadow: 0 -2px 10px rgba(0,0,0,0.03);
+            position: fixed; bottom: 0; left: 0; width: 100%; background: white; border-top: 1px solid #eee;
+            display: flex; justify-content: space-around; padding: 8px 0 10px 0; font-size: 11.5px; font-weight: 500;
+            color: #888; z-index: 100; box-shadow: 0 -2px 10px rgba(0,0,0,0.03);
         }
-        .nav-item {
-            cursor: pointer;
-            text-align: center;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 3px;
+        .nav-item { cursor: pointer; text-align: center; display: flex; flex-direction: column; align-items: center; gap: 3px; }
+        .nav-item span { font-size: 18px; }
+        .nav-item.active { color: #b8973c; font-weight: 600; }
+        
+        .online-dot {
+            width: 11px; height: 11px; background-color: #28a745; border: 2px solid #fff;
+            border-radius: 50%; display: inline-block; position: absolute; bottom: 2px; right: 2px;
         }
-        .nav-item span {
-            font-size: 18px;
+        .offline-dot {
+            width: 11px; height: 11px; background-color: #999; border: 2px solid #fff;
+            border-radius: 50%; display: inline-block; position: absolute; bottom: 2px; right: 2px;
         }
-        .nav-item.active {
-            color: #b8973c;
-            font-weight: 600;
+        .chat-item {
+            display: flex; align-items: center; gap: 12px; padding: 12px; background: #fff;
+            border-bottom: 1px solid #eee; border-radius: 10px; margin-bottom: 8px; cursor: pointer;
         }
+        .chat-item:hover { background: #fdf8ed; }
+        .chat-avatar-wrapper { position: relative; width: 45px; height: 45px; }
+        .chat-avatar { width: 45px; height: 45px; border-radius: 50%; background: #ddd; object-fit: cover; }
+        .chat-info { flex: 1; }
+        .chat-info h4 { margin: 0 0 3px 0; font-size: 15px; color: #222; }
+        .chat-info p { margin: 0; font-size: 12px; color: #666; }
+        
+        .msg-bubble {
+            max-width: 75%; padding: 10px 14px; border-radius: 12px; font-size: 13px; margin-bottom: 8px; line-height: 1.4; word-break: break-word; position: relative;
+        }
+        .msg-me { background: #dcf8c6; margin-left: auto; text-align: left; border-top-right-radius: 2px; }
+        .msg-other { background: #fff; border: 1px solid #ddd; margin-right: auto; text-align: left; border-top-left-radius: 2px; }
+        .msg-delete-btn {
+            position: absolute; top: 4px; right: 6px; font-size: 10px; color: #888; background: none; border: none; cursor: pointer; display: none;
+        }
+        .msg-bubble:hover .msg-delete-btn { display: inline-block; }
     </style>
 </head>
 <body>
@@ -714,6 +259,7 @@
         <img class="lightbox-content" id="lightboxImg" src="" alt="Büyük Medya">
     </div>
 
+    <!-- PROFİL DETAY EKRANI -->
     <div class="profile-detail-overlay" id="profileDetailModal">
         <div class="profile-detail-header">
             <button class="back-btn" onclick="closeProfileDetail()">←</button>
@@ -723,12 +269,13 @@
         <div class="profile-detail-body">
             <div class="big-profile-photo" onclick="openLightboxFromDetail()">
                 <img id="modalProfileImg" src="" alt="Profil Fotoğrafı">
+                <span class="online-dot" style="width: 16px; height: 16px; bottom: 10px; right: 10px;"></span>
             </div>
             
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
                 <div style="text-align: left;">
                     <h2 id="modalProfileNameAge" style="margin: 0 0 3px 0; font-size: 22px; color: #222;">Esila, 19 <span style="color:#d4af37;">✔</span></h2>
-                    <p id="modalProfileCity" style="margin: 0; font-size: 13px; color: #666;">Bilecik, Türkiye</p>
+                    <p id="modalProfileCity" style="margin: 0; font-size: 13px; color: #666;">Bilecik, Türkiye &nbsp;|&nbsp; <span style="color: #28a745; font-weight: bold;">● Çevrimiçi</span></p>
                 </div>
                 <button class="btn-gold" style="border-radius: 20px; width: auto; padding: 10px 20px; font-size: 13px;" onclick="openChatFromModal()">💬 Mesaj Gönder</button>
             </div>
@@ -744,7 +291,7 @@
             </div>
 
             <div class="profile-action-buttons">
-                <div class="action-circle-btn" onclick="alert('Arkadaşlık isteği gönderildi! 👤+')"><span>👤+</span></div>
+                <div class="action-circle-btn" id="friendRequestBtn" onclick="sendFriendRequest()"><span>👤+</span></div>
                 <div class="action-circle-btn star" onclick="alert('Super Like gönderildi! ⭐')"><span style="color: #fff;">⭐</span></div>
                 <div class="action-circle-btn like" onclick="alert('Profil beğenildi! ❤️')"><span>❤️</span></div>
             </div>
@@ -765,7 +312,7 @@
     </div>
 
     <!-- ANA SAYFA -->
-    <div id="page-anasayfa" class="page-section active-page">
+    <div id="page-anasayfa" class="page-section">
         <div class="explore-header">
             <div class="explore-tabs">
                 <span class="explore-tab-active">Normal</span>
@@ -825,33 +372,59 @@
     <!-- MESAJLAR -->
     <div id="page-mesajlar" class="page-section">
         <div class="chat-box" id="chatMainContainer">
-            <h3>💬 Mesajlaşma Yetkisi</h3>
-            <p style="font-size: 13px; color: #555;">Mesajlaşmak için 350 TL Abonelik gerekmektedir.</p>
-            <div class="payment-container">
-                <h3>💳 350 TL - 1 Aylık Abonelik</h3>
-                <p style="font-size: 12px; background: #f1f1f1; padding: 8px; border-radius: 5px;"><strong>IBAN:</strong> TR22 0001 0024 4882 0154 7550 07<br><span style="color: #b8973c; font-weight: bold;">Ödeme Açıklaması: Hediye</span></p>
-                <div class="form-group">
-                    <label>Telefonunuz (Sadece yönetim onayı için):</label>
-                    <input type="tel" id="userPhoneInput" placeholder="05XX XXX XX XX">
+            <div id="unpaidChatWarning">
+                <h3>💬 Mesajlaşma Yetkisi</h3>
+                <p style="font-size: 13px; color: #555;">Mesajlaşmak için 350 TL Abonelik gerekmektedir.</p>
+                <div class="payment-container">
+                    <h3>💳 350 TL - 1 Aylık Abonelik</h3>
+                    <p style="font-size: 12px; background: #f1f1f1; padding: 8px; border-radius: 5px;"><strong>IBAN:</strong> TR22 0001 0024 4882 0154 7550 07<br><span style="color: #b8973c; font-weight: bold;">Ödeme Açıklaması: Hediye</span></p>
+                    <div class="form-group">
+                        <label>Telefonunuz (Sadece yönetim onayı için):</label>
+                        <input type="tel" id="userPhoneInput" placeholder="05XX XXX XX XX">
+                    </div>
+                    <div class="form-group">
+                        <label>📷 Dekont Fotoğrafını Yükle:</label>
+                        <input type="file" id="userReceiptFile" accept="image/*" style="font-size: 12px; width: 100%;">
+                    </div>
+                    <div class="refund-notice">⚠️ Ödenen para iadesi asla yapılmaz. Sorumluluk size aittir.</div>
+                    <label class="checkbox-group">
+                        <input type="checkbox" id="kvkkCheck">
+                        <span>Kuralları ve koşulları onaylıyorum.</span>
+                    </label>
+                    <button class="btn-gold" onclick="checkPayment()">Ödemeyi Bildir</button>
                 </div>
-                <div class="form-group">
-                    <label>📷 Dekont Fotoğrafını Yükle:</label>
-                    <input type="file" id="userReceiptFile" accept="image/*" style="font-size: 12px; width: 100%;">
-                </div>
-                <div class="refund-notice">⚠️ Ödenen para iadesi asla yapılmaz. Sorumluluk size aittir.</div>
-                <label class="checkbox-group">
-                    <input type="checkbox" id="kvkkCheck">
-                    <span>Kuralları ve koşulları onaylıyorum.</span>
-                </label>
-                <button class="btn-gold" onclick="checkPayment()">Ödemeyi Bildir</button>
+            </div>
+
+            <div id="paidChatListArea" style="display: none;">
+                <h3 style="color: #b8973c; margin-bottom: 12px;">💬 Sohbetler</h3>
+                <div id="whatsappChatList"></div>
             </div>
         </div>
+        
+        <!-- BİREBİR ÖZEL SOHBET PENCERESİ -->
         <div class="chat-box" id="activeChatContainer" style="display: none;">
-            <h3 style="color: #b8973c;">💬 Canlı Sohbet Odası</h3>
-            <div id="chatMessagesList" style="background: #f9f9f9; border: 1px solid #ddd; border-radius: 8px; height: 220px; overflow-y: auto; padding: 10px; margin-bottom: 10px;"></div>
-            <div style="display: flex; gap: 8px;">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; border-bottom: 1px solid #eee; padding-bottom: 8px;">
+                <div style="display: flex; align-items: center; gap: 8px;">
+                    <div style="position: relative;">
+                        <img id="activeChatAvatar" src="" style="width: 38px; height: 38px; border-radius: 50%; object-fit: cover;" alt="">
+                        <span class="online-dot" style="width: 10px; height: 10px; bottom: 0; right: 0;"></span>
+                    </div>
+                    <div>
+                        <h3 id="activeChatTitle" style="color: #b8973c; margin: 0; font-size: 15px;">Sohbet</h3>
+                        <p style="margin: 0; font-size: 11px; color: #28a745;">● Çevrimiçi</p>
+                    </div>
+                </div>
+                <button onclick="backToChatList()" style="background: #f0f0f0; border: none; padding: 6px 12px; border-radius: 6px; font-size: 11px; cursor: pointer;">← Sohbetler</button>
+            </div>
+            
+            <div id="chatMessagesList" style="background: #efe7dd; border: 1px solid #ddd; border-radius: 8px; height: 220px; overflow-y: auto; padding: 12px; margin-bottom: 10px;"></div>
+            
+            <div style="display: flex; gap: 6px; align-items: center;">
+                <input type="file" id="chatImageFile" accept="image/*" style="display: none;" onchange="sendChatImage(this)">
+                <button type="button" onclick="document.getElementById('chatImageFile').click()" style="background: #f0f0f0; border: 1px solid #ccc; border-radius: 8px; padding: 10px; cursor: pointer; font-size: 14px;" title="Fotoğraf Gönder">📷</button>
+                <button type="button" onclick="sendVoiceMessage()" style="background: #f0f0f0; border: 1px solid #ccc; border-radius: 8px; padding: 10px; cursor: pointer; font-size: 14px;" title="Sesli Mesaj Gönder">🎤</button>
                 <input type="text" id="chatInputText" placeholder="Mesaj yazın..." style="flex: 1; padding: 10px; border: 1px solid #ccc; border-radius: 8px; font-size: 13px;">
-                <button class="btn-gold" style="width: 90px;" onclick="sendChatMessage()">Gönder</button>
+                <button class="btn-gold" style="width: 80px; padding: 10px 0;" onclick="sendChatMessage()">Gönder</button>
             </div>
         </div>
     </div>
@@ -861,8 +434,20 @@
         <div style="padding: 20px;" id="normalProfileContent">
             <h3 style="color: #b8973c;">Profil ve Kayıt Ol</h3>
             <div class="payment-container" style="margin: 0 0 20px 0;">
+                <div class="form-group">
+                    <label>📷 Profil Yükle:</label>
+                    <input type="file" id="userProfilePicInput" accept="image/*" style="font-size: 12px; width: 100%;">
+                </div>
                 <div class="form-group"><label>Ad Soyad:</label><input type="text" id="regName" placeholder="Adınız Soyadınız"></div>
                 <div class="form-group"><label>Şehir:</label><input type="text" id="regCity" placeholder="Şehir"></div>
+                <div class="form-group">
+                    <label>Cinsiyet:</label>
+                    <select id="regGender">
+                        <option value="">Seçiniz...</option>
+                        <option value="Kadın">Kadın</option>
+                        <option value="Erkek">Erkek</option>
+                    </select>
+                </div>
                 <div class="form-group">
                     <label>Medeni Durum:</label>
                     <select id="regMarital">
@@ -874,11 +459,10 @@
                 </div>
                 <div class="form-group"><label>Boy (cm):</label><input type="number" id="regHeight" placeholder="Örn: 175"></div>
                 <div class="form-group"><label>Kilo (kg):</label><input type="number" id="regWeight" placeholder="Örn: 70"></div>
-                <div class="form-group"><label>Durum (İsteğe bağlı):</label><input type="text" id="regStatus" placeholder="Boş bırakabilirsiniz..."></div>
-                <div class="form-group"><label>Müzik (İsteğe bağlı):</label><input type="text" id="regMusic" placeholder="Boş bırakabilirsiniz..."></div>
                 <button class="btn-gold" onclick="saveUserProfile()">Profili Kaydet</button>
             </div>
-            <div style="text-align: center;"><button onclick="showAdminLogin()" style="background: none; border: none; color: #999; font-size: 11px; text-decoration: underline; cursor: pointer;">🔐 Yönetici Girişi</button></div>
+            <div style="text-align: center; font-size: 12px; color: #888; margin-top: 15px;">by</div>
+            <div style="text-align: center; margin-top: 10px;"><button onclick="showAdminLogin()" style="background: none; border: none; color: #999; font-size: 11px; text-decoration: underline; cursor: pointer;">🔐 Yönetici Girişi</button></div>
         </div>
         <div class="admin-login-area" id="adminLoginArea">
             <div class="admin-login-box">
@@ -909,10 +493,55 @@
         <div class="nav-item" onclick="switchPage('kesfet', this)"><span>🌍</span> Keşfet</div>
         <div class="nav-item" onclick="switchPage('akis', this)"><span>🔥</span> Akış</div>
         <div class="nav-item" onclick="switchPage('mesajlar', this)"><span>💬</span> Mesajlar</div>
-        <div class="nav-item" onclick="switchPage('profil', this)"><span>👤</span> Profil</div>
+        <div class="nav-item" onclick="switchPage('profil', this, true)"><span>👤</span> Profil</div>
     </div>
 
     <script>
+        // LocalStorage'dan verileri çek
+        var currentUserProfile = JSON.parse(localStorage.getItem('kismet_userProfile')) || {
+            name: 'Mehmet',
+            age: '28',
+            city: 'Bodrum, Muğla',
+            gender: 'Erkek',
+            image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500',
+            status: 'Aktif',
+            music: '',
+            marital: 'Bekar',
+            height: '175',
+            weight: '70',
+            isRegistered: false
+        };
+
+        var registeredProfiles = JSON.parse(localStorage.getItem('kismet_registeredProfiles')) || [
+            { name: 'Esila Yılmaz, 19', city: 'Bilecik, Türkiye', gender: 'Kadın', image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500', status: 'Ciddi evlilik düşünüyorum', music: 'Müslüm Gürses - Affet', marital: 'Bekar', height: '168', weight: '54' },
+            { name: 'Kubilay Demir, 29', city: 'Kocaeli, Türkiye', gender: 'Erkek', image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500', status: '', music: '', marital: 'Bekar', height: '180', weight: '78' }
+        ];
+
+        var userPosts = JSON.parse(localStorage.getItem('kismet_userPosts')) || [
+            { id: 1, author: 'Esila Yılmaz, 19', city: 'Bilecik, Türkiye', gender: 'Kadın', image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500', likesCount: 0, isLiked: false, comments: [] }
+        ];
+
+        var chatDatabase = JSON.parse(localStorage.getItem('kismet_chatDatabase')) || {
+            'Esila': {
+                avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500',
+                online: true,
+                messages: [
+                    { id: 1, sender: 'Esila', type: 'text', content: 'Merhaba, tanışabilir miyiz?' }
+                ]
+            },
+            'Kubilay': {
+                avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500',
+                online: false,
+                messages: [
+                    { id: 2, sender: 'Kubilay', type: 'text', content: 'Selam, nasılsınız?' }
+                ]
+            }
+        };
+
+        var isUserPremium = JSON.parse(localStorage.getItem('kismet_isUserPremium')) || false;
+        var pendingPaymentData = JSON.parse(localStorage.getItem('kismet_pendingPayment')) || null;
+        var activePageName = localStorage.getItem('kismet_activePage') || 'anasayfa';
+
         window.onload = function() {
             setTimeout(function() {
                 var splash = document.getElementById('splash');
@@ -921,8 +550,17 @@
                     setTimeout(function() { splash.style.display = 'none'; }, 500);
                 }
             }, 600);
+
+            // Sayfa yenilendiğinde en son kaldığı sekmeyi/sayfayı aç
+            var navIndexMap = { 'anasayfa': 0, 'kesfet': 1, 'akis': 2, 'mesajlar': 3, 'profil': 4 };
+            var targetNavIndex = navIndexMap[activePageName] !== undefined ? navIndexMap[activePageName] : 0;
+            switchPage(activePageName, document.getElementsByClassName('nav-item')[targetNavIndex], false);
+
             renderProfiles();
             renderFeed();
+            if(pendingPaymentData) {
+                updateAdminPanelUI(true);
+            }
         };
 
         function acceptTerms() {
@@ -930,7 +568,15 @@
             if(terms) terms.style.display = 'none';
         }
 
-        function switchPage(pageName, element) {
+        function switchPage(pageName, element, isMyProfileClick) {
+            if (pageName === 'profil' && isMyProfileClick && currentUserProfile.isRegistered) {
+                openProfileDetail(currentUserProfile.name + ', ' + currentUserProfile.age, currentUserProfile.city, currentUserProfile.gender, currentUserProfile.image, currentUserProfile.status, currentUserProfile.music, currentUserProfile.marital, currentUserProfile.height, currentUserProfile.weight);
+                return;
+            }
+
+            activePageName = pageName;
+            localStorage.setItem('kismet_activePage', pageName);
+
             var pages = document.getElementsByClassName('page-section');
             for(var i = 0; i < pages.length; i++) {
                 pages[i].classList.remove('active-page');
@@ -957,10 +603,14 @@
         }
 
         var selectedProfileForDetail = null;
-        function openProfileDetail(name, city, imageSrc, status, music, marital, height, weight) {
+        var sentRequests = JSON.parse(localStorage.getItem('kismet_sentRequests')) || {};
+        var activeChatUser = null;
+        var activeChatAvatar = '';
+
+        function openProfileDetail(name, city, gender, imageSrc, status, music, marital, height, weight) {
             selectedProfileForDetail = name;
             document.getElementById('modalProfileNameAge').innerHTML = name + ' <span style="color:#d4af37;">✔</span>';
-            document.getElementById('modalProfileCity').innerText = city;
+            document.getElementById('modalProfileCity').innerText = city + ' \xa0|\xa0 ';
             
             var statusBox = document.getElementById('modalProfileStatus');
             if(status && status.trim() !== '') {
@@ -972,6 +622,7 @@
 
             var infoBox = document.getElementById('modalProfileInfo');
             var infoText = [];
+            if(gender) infoText.push('👤 Cinsiyet: ' + gender);
             if(marital) infoText.push('💍 Medeni Durum: ' + marital);
             if(height) infoText.push('📏 Boy: ' + height + ' cm');
             if(weight) infoText.push('⚖️ Kilo: ' + weight + ' kg');
@@ -992,11 +643,41 @@
             }
 
             document.getElementById('modalProfileImg').src = imageSrc || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500';
+
+            var reqBtn = document.getElementById('friendRequestBtn');
+            if (sentRequests[name]) {
+                reqBtn.innerHTML = '<span>✓</span>';
+                reqBtn.style.background = '#28a745';
+                reqBtn.style.color = '#fff';
+            } else {
+                reqBtn.innerHTML = '<span>👤+</span>';
+                reqBtn.style.background = '#fff';
+                reqBtn.style.color = '#333';
+            }
+
             document.getElementById('profileDetailModal').style.display = 'flex';
         }
 
+        function sendFriendRequest() {
+            if (!selectedProfileForDetail) return;
+            sentRequests[selectedProfileForDetail] = true;
+            localStorage.setItem('kismet_sentRequests', JSON.stringify(sentRequests));
+            var reqBtn = document.getElementById('friendRequestBtn');
+            reqBtn.innerHTML = '<span>✓</span>';
+            reqBtn.style.background = '#28a745';
+            reqBtn.style.color = '#fff';
+            alert(selectedProfileForDetail + ' adlı kullanıcıya arkadaşlık isteği gönderildi!');
+        }
+
         function closeProfileDetail() { document.getElementById('profileDetailModal').style.display = 'none'; }
-        function openChatFromModal() { closeProfileDetail(); openInAppChat(selectedProfileForDetail); }
+        
+        function openChatFromModal() {
+            closeProfileDetail();
+            var targetName = selectedProfileForDetail.split(',')[0].trim();
+            var targetImg = document.getElementById('modalProfileImg').src;
+            openWhatsAppChat(targetName, targetImg);
+        }
+
         function openLightbox(imgSrc) { document.getElementById('lightboxImg').src = imgSrc; document.getElementById('lightboxModal').style.display = 'flex'; }
         function openLightboxFromDetail() { openLightbox(document.getElementById('modalProfileImg').src); }
         function closeLightbox() { document.getElementById('lightboxModal').style.display = 'none'; }
@@ -1010,6 +691,9 @@
                 document.getElementById('adminLoginArea').style.display = 'none';
                 document.getElementById('normalProfileContent').style.display = 'none';
                 document.getElementById('adminDashboardPanel').style.display = 'block';
+                if(pendingPaymentData) {
+                    updateAdminPanelUI(true);
+                }
                 alert('🔓 Yönetici paneline giriş yapıldı!');
             } else {
                 alert('❌ Hatalı şifre!');
@@ -1024,9 +708,6 @@
 
         function openModal() { document.getElementById('postModal').style.display = 'flex'; }
         function closeModal() { document.getElementById('postModal').style.display = 'none'; }
-
-        var isUserPremium = false;
-        var pendingPaymentData = null;
 
         function checkPayment() {
             var phone = document.getElementById('userPhoneInput').value.trim();
@@ -1043,6 +724,7 @@
                         date: new Date().toLocaleString('tr-TR'),
                         receiptImage: e.target.result
                     };
+                    localStorage.setItem('kismet_pendingPayment', JSON.stringify(pendingPaymentData));
                     updateAdminPanelUI();
                 };
                 reader.readAsDataURL(receiptFile.files[0]);
@@ -1053,18 +735,20 @@
                     date: new Date().toLocaleString('tr-TR'),
                     receiptImage: null
                 };
+                localStorage.setItem('kismet_pendingPayment', JSON.stringify(pendingPaymentData));
                 updateAdminPanelUI();
             }
         }
 
-        function updateAdminPanelUI() {
+        function updateAdminPanelUI(isFromLoad) {
+            if(!pendingPaymentData) return;
             document.getElementById('adminPaymentInfo').innerHTML = 
                 '<strong>Açıklama:</strong> Hediye<br>' +
                 '<strong>Telefon:</strong> ' + pendingPaymentData.phone + '<br>' +
                 '<strong>Tarih:</strong> ' + pendingPaymentData.date + '<br>' +
                 '<strong>Dekont:</strong> ' + (pendingPaymentData.receiptImage ? 'Yüklendi (Görüntülenebilir)' : 'Yüklenmedi');
             document.getElementById('adminActionRow').style.display = 'flex';
-            alert('✅ Ödeme bildirimi yönetici paneline gönderildi!');
+            if(!isFromLoad) alert('✅ Ödeme bildirimi yönetici paneline gönderildi!');
         }
 
         function viewReceiptImage() {
@@ -1088,74 +772,225 @@
 
         function approvePremium() {
             isUserPremium = true;
+            localStorage.setItem('kismet_isUserPremium', JSON.stringify(isUserPremium));
             document.getElementById('adminPaymentInfo').innerHTML = '✅ Ödeme onaylandı ve yetki verildi.';
             document.getElementById('adminActionRow').style.display = 'none';
-            alert('🎉 Ödeme onaylandı! Kullanıcının mesajlaşması açıldı.');
+            alert('🎉 Ödeme onaylandı! Mesajlaşma yetkisi açıldı.');
             checkChatAccess();
         }
 
         function checkChatAccess() {
             if (isUserPremium) {
-                document.getElementById('chatMainContainer').style.display = 'none';
-                document.getElementById('activeChatContainer').style.display = 'block';
+                document.getElementById('unpaidChatWarning').style.display = 'none';
+                document.getElementById('paidChatListArea').style.display = 'block';
+                renderWhatsAppChatList();
             } else {
-                document.getElementById('chatMainContainer').style.display = 'block';
-                document.getElementById('activeChatContainer').style.display = 'none';
+                document.getElementById('unpaidChatWarning').style.display = 'block';
+                document.getElementById('paidChatListArea').style.display = 'none';
             }
         }
 
-        var chatMessages = [{ sender: 'Sistem', text: 'Hoş geldiniz.' }];
-        function sendChatMessage() {
-            var input = document.getElementById('chatInputText');
-            if(!input.value.trim()) return;
-            chatMessages.push({ sender: 'Siz', text: input.value });
-            input.value = '';
-            var list = document.getElementById('chatMessagesList');
+        function renderWhatsAppChatList() {
+            var listContainer = document.getElementById('whatsappChatList');
             var html = '';
-            for(var k=0; k<chatMessages.length; k++) {
-                html += '<div><strong>' + chatMessages[k].sender + ':</strong> ' + chatMessages[k].text + '</div>';
+            for (var name in chatDatabase) {
+                var chat = chatDatabase[name];
+                var lastMsgObj = chat.messages[chat.messages.length - 1];
+                var lastMsgText = lastMsgObj ? (lastMsgObj.sender + ': ' + (lastMsgObj.type === 'image' ? '📷 [Fotoğraf]' : lastMsgObj.type === 'voice' ? '🎤 [Sesli Mesaj]' : lastMsgObj.content)) : 'Henüz mesaj yok';
+                var dotClass = chat.online ? 'online-dot' : 'offline-dot';
+                
+                html += '<div class="chat-item" onclick="openWhatsAppChat(\'' + name + '\', \'' + chat.avatar + '\')">' +
+                    '<div class="chat-avatar-wrapper">' +
+                        '<img class="chat-avatar" src="' + chat.avatar + '" alt="">' +
+                        '<span class="' + dotClass + '"></span>' +
+                    '</div>' +
+                    '<div class="chat-info">' +
+                        '<h4>' + name + ' <span style="font-size: 10px; color: ' + (chat.online ? '#28a745' : '#888') + '; font-weight: normal;">' + (chat.online ? '● Çevrimiçi' : '○ Çevrimdışı') + '</span></h4>' +
+                        '<p>' + lastMsgText + '</p>' +
+                    '</div>' +
+                '</div>';
             }
-            list.innerHTML = html;
+            listContainer.innerHTML = html;
         }
 
-        function openInAppChat(name) {
+        function openWhatsAppChat(name, avatar) {
             if (!isUserPremium) {
                 alert('🔒 Mesajlaşmak için 350 TL Abonelik gereklidir.');
                 switchPage('mesajlar', document.getElementsByClassName('nav-item')[3]);
                 return;
             }
+            activeChatUser = name;
+            activeChatAvatar = avatar || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500';
+
+            if (!chatDatabase[name]) {
+                chatDatabase[name] = { avatar: activeChatAvatar, online: true, messages: [{ id: Date.now(), sender: name, type: 'text', content: 'Merhaba!' }] };
+                localStorage.setItem('kismet_chatDatabase', JSON.stringify(chatDatabase));
+            }
+
+            document.getElementById('activeChatTitle').innerText = name;
+            document.getElementById('activeChatAvatar').src = activeChatAvatar;
+
             switchPage('mesajlar', document.getElementsByClassName('nav-item')[3]);
+            document.getElementById('chatMainContainer').style.display = 'none';
+            document.getElementById('activeChatContainer').style.display = 'block';
+            renderChatMessages();
         }
 
-        var registeredProfiles = [
-            { name: 'Esila Yılmaz, 19', city: 'Bilecik, Türkiye', image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500', status: 'Ciddi evlilik düşünüyorum', music: 'Müslüm Gürses - Affet', marital: 'Bekar', height: '168', weight: '54' },
-            { name: 'Kubilay Demir, 29', city: 'Kocaeli, Türkiye', image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500', status: '', music: '', marital: 'Bekar', height: '180', weight: '78' }
-        ];
+        function backToChatList() {
+            activeChatUser = null;
+            document.getElementById('activeChatContainer').style.display = 'none';
+            document.getElementById('chatMainContainer').style.display = 'block';
+            renderWhatsAppChatList();
+        }
+
+        function sendChatMessage() {
+            var input = document.getElementById('chatInputText');
+            var text = input.value.trim();
+            if(!text || !activeChatUser) return;
+
+            var myName = currentUserProfile.isRegistered ? currentUserProfile.name : 'Mehmet';
+
+            chatDatabase[activeChatUser].messages.push({ id: Date.now(), sender: myName, type: 'text', content: text });
+            localStorage.setItem('kismet_chatDatabase', JSON.stringify(chatDatabase));
+            input.value = '';
+            renderChatMessages();
+
+            setTimeout(function() {
+                if(activeChatUser) {
+                    chatDatabase[activeChatUser].messages.push({ id: Date.now() + 1, sender: activeChatUser, type: 'text', content: 'Harika, memnun oldum!' });
+                    localStorage.setItem('kismet_chatDatabase', JSON.stringify(chatDatabase));
+                    renderChatMessages();
+                }
+            }, 1200);
+        }
+
+        function sendChatImage(inputElement) {
+            if (!inputElement.files || !inputElement.files[0] || !activeChatUser) return;
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                var myName = currentUserProfile.isRegistered ? currentUserProfile.name : 'Mehmet';
+                chatDatabase[activeChatUser].messages.push({ id: Date.now(), sender: myName, type: 'image', content: e.target.result });
+                localStorage.setItem('kismet_chatDatabase', JSON.stringify(chatDatabase));
+                renderChatMessages();
+                inputElement.value = '';
+            };
+            reader.readAsDataURL(inputElement.files[0]);
+        }
+
+        function sendVoiceMessage() {
+            if (!activeChatUser) return;
+            var myName = currentUserProfile.isRegistered ? currentUserProfile.name : 'Mehmet';
+            chatDatabase[activeChatUser].messages.push({ id: Date.now(), sender: myName, type: 'voice', content: '🎤 Sesli Mesaj (0:14)' });
+            localStorage.setItem('kismet_chatDatabase', JSON.stringify(chatDatabase));
+            renderChatMessages();
+        }
+
+        function deleteMessage(msgId) {
+            if (!activeChatUser) return;
+            var messages = chatDatabase[activeChatUser].messages;
+            for (var i = 0; i < messages.length; i++) {
+                if (messages[i].id === msgId) {
+                    messages[i].type = 'text';
+                    messages[i].content = '🚫 Bu mesaj silindi.';
+                    break;
+                }
+            }
+            localStorage.setItem('kismet_chatDatabase', JSON.stringify(chatDatabase));
+            renderChatMessages();
+        }
+
+        function renderChatMessages() {
+            if (!activeChatUser) return;
+            var list = document.getElementById('chatMessagesList');
+            var messages = chatDatabase[activeChatUser].messages;
+            var myName = currentUserProfile.isRegistered ? currentUserProfile.name : 'Mehmet';
+            var html = '';
+
+            for(var k=0; k<messages.length; k++) {
+                var m = messages[k];
+                var isMe = (m.sender === myName || m.sender === 'Siz');
+                var bubbleClass = isMe ? 'msg-bubble msg-me' : 'msg-bubble msg-other';
+                
+                var deleteBtnHtml = '';
+                if (isMe && m.content !== '🚫 Bu mesaj silindi.') {
+                    deleteBtnHtml = '<button class="msg-delete-btn" onclick="deleteMessage(' + m.id + ')">Sil</button>';
+                }
+
+                var contentHtml = '';
+                if (m.type === 'image') {
+                    contentHtml = '<img src="' + m.content + '" style="max-width: 180px; border-radius: 8px; cursor: pointer;" onclick="openLightbox(\'' + m.content + '\')">';
+                } else if (m.type === 'voice') {
+                    contentHtml = '<div style="display: flex; align-items: center; gap: 8px;"><button style="background:none; border:none; font-size:16px; cursor:pointer;" onclick="alert(\'Sesli mesaj oynatılıyor...\')">▶️</button><span style="font-size:12px;">🎵 Sesli Mesaj (0:14)</span></div>';
+                } else {
+                    contentHtml = '<div>' + m.content + '</div>';
+                }
+
+                html += '<div class="' + bubbleClass + '">' +
+                    deleteBtnHtml +
+                    '<div style="font-size: 10px; font-weight: bold; color: #888; margin-bottom: 2px;">' + m.sender + '</div>' +
+                    contentHtml +
+                '</div>';
+            }
+            list.innerHTML = html;
+            list.scrollTop = list.scrollHeight;
+        }
 
         function saveUserProfile() {
             var fullName = document.getElementById('regName').value.trim();
             var city = document.getElementById('regCity').value.trim();
+            var gender = document.getElementById('regGender').value;
             var marital = document.getElementById('regMarital').value;
             var height = document.getElementById('regHeight').value.trim();
             var weight = document.getElementById('regWeight').value.trim();
-            var status = document.getElementById('regStatus').value.trim();
-            var music = document.getElementById('regMusic').value.trim();
+            var profilePicInput = document.getElementById('userProfilePicInput');
 
             if(!fullName) { alert('Lütfen ad soyad girin!'); return; }
 
-            registeredProfiles.unshift({ 
-                name: fullName + ', 25', 
-                city: city ? city + ', Türkiye' : 'Türkiye', 
+            currentUserProfile.name = fullName;
+            currentUserProfile.city = city ? city + ', Türkiye' : 'Türkiye';
+            currentUserProfile.gender = gender || 'Erkek';
+            currentUserProfile.marital = marital || 'Bekar';
+            currentUserProfile.height = height || '175';
+            currentUserProfile.weight = weight || '70';
+            currentUserProfile.isRegistered = true;
+
+            var fullProfileObj = {
+                name: fullName + ', 28',
+                city: currentUserProfile.city,
+                gender: currentUserProfile.gender,
                 image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500',
-                status: status,
-                music: music,
-                marital: marital,
-                height: height,
-                weight: weight
-            });
-            alert('✅ Profil kaydedildi!');
-            switchPage('anasayfa', document.getElementsByClassName('nav-item')[0]);
-            renderProfiles();
+                status: '',
+                music: '',
+                marital: currentUserProfile.marital,
+                height: currentUserProfile.height,
+                weight: currentUserProfile.weight
+            };
+
+            if (profilePicInput.files && profilePicInput.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    currentUserProfile.image = e.target.result;
+                    fullProfileObj.image = e.target.result;
+                    registeredProfiles.unshift(fullProfileObj);
+                    
+                    localStorage.setItem('kismet_userProfile', JSON.stringify(currentUserProfile));
+                    localStorage.setItem('kismet_registeredProfiles', JSON.stringify(registeredProfiles));
+
+                    alert('✅ Profil başarıyla yüklendi ve kaydedildi!');
+                    switchPage('anasayfa', document.getElementsByClassName('nav-item')[0]);
+                    renderProfiles();
+                };
+                reader.readAsDataURL(profilePicInput.files[0]);
+            } else {
+                registeredProfiles.unshift(fullProfileObj);
+                
+                localStorage.setItem('kismet_userProfile', JSON.stringify(currentUserProfile));
+                localStorage.setItem('kismet_registeredProfiles', JSON.stringify(registeredProfiles));
+
+                alert('✅ Profil kaydedildi!');
+                switchPage('anasayfa', document.getElementsByClassName('nav-item')[0]);
+                renderProfiles();
+            }
         }
 
         function renderProfiles() {
@@ -1164,27 +999,24 @@
             var html = '';
             for (var i = 0; i < registeredProfiles.length; i++) {
                 var p = registeredProfiles[i];
+                var shortName = p.name.split(',')[0].trim();
                 html += '<div class="profile-card-grid">' +
-                    '<div class="profile-card-image-bg" style="background-image: url(\'' + p.image + '\');" onclick="openProfileDetail(\'' + p.name + '\', \'' + p.city + '\', \'' + p.image + '\', \'' + (p.status || '') + '\', \'' + (p.music || '') + '\', \'' + (p.marital || '') + '\', \'' + (p.height || '') + '\', \'' + (p.weight || '') + '\')"></div>' +
+                    '<div class="profile-card-image-bg" style="background-image: url(\'' + p.image + '\');" onclick="openProfileDetail(\'' + p.name + '\', \'' + p.city + '\', \'' + (p.gender || 'Belirtilmemiş') + '\', \'' + p.image + '\', \'' + (p.status || '') + '\', \'' + (p.music || '') + '\', \'' + (p.marital || '') + '\', \'' + (p.height || '') + '\', \'' + (p.weight || '') + '\')"></div>' +
                     '<div class="profile-card-gradient"></div>' +
                     '<div class="profile-card-info">' +
-                        '<h4 onclick="openProfileDetail(\'' + p.name + '\', \'' + p.city + '\', \'' + p.image + '\', \'' + (p.status || '') + '\', \'' + (p.music || '') + '\', \'' + (p.marital || '') + '\', \'' + (p.height || '') + '\', \'' + (p.weight || '') + '\')">' + p.name + '</h4>' +
-                        '<p>' + p.city + '</p>' +
+                        '<h4 onclick="openProfileDetail(\'' + p.name + '\', \'' + p.city + '\', \'' + (p.gender || 'Belirtilmemiş') + '\', \'' + p.image + '\', \'' + (p.status || '') + '\', \'' + (p.music || '') + '\', \'' + (p.marital || '') + '\', \'' + (p.height || '') + '\', \'' + (p.weight || '') + '\')">' + p.name + '</h4>' +
+                        '<p>' + p.city + ' <span style="color:#28a745;">● Çevrimiçi</span></p>' +
                         '<div class="profile-card-actions">' +
                             '<button class="btn-card-like" onclick="event.stopPropagation(); alert(\'Beğenildi ❤️\')">❤️</button>' +
-                            '<button class="btn-card-follow" onclick="event.stopPropagation(); openInAppChat(\'' + p.name + '\')">➕ Takip Et</button>' +
+                            '<button class="btn-card-follow" onclick="event.stopPropagation(); openWhatsAppChat(\'' + shortName + '\', \'' + p.image + '\')">➕ Takip Et</button>' +
                         '</div>' +
-                        '<button class="btn-card-msg" onclick="event.stopPropagation(); openInAppChat(\'' + p.name + '\')">💬 Mesaj Gönder</button>' +
+                        '<button class="btn-card-msg" onclick="event.stopPropagation(); openWhatsAppChat(\'' + shortName + '\', \'' + p.image + '\')">💬 Mesaj Gönder</button>' +
                     '</div>' +
                 '</div>';
             }
             if(grid1) grid1.innerHTML = html;
             if(grid2) grid2.innerHTML = html;
         }
-
-        var userPosts = [
-            { author: 'Esila Yılmaz, 19', city: 'Bilecik, Türkiye', text: 'Mutlu hafta sonları dilerim.', image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500' }
-        ];
 
         function addNewPost() {
             var text = document.getElementById('postContentInput').value.trim();
@@ -1195,10 +1027,17 @@
                 return; 
             }
 
+            var authorName = currentUserProfile.isRegistered ? (currentUserProfile.name + ', 28') : 'Mehmet Akkuş, 28';
+            var authorCity = currentUserProfile.isRegistered ? currentUserProfile.city : 'Bodrum, Muğla';
+            var authorGender = currentUserProfile.isRegistered ? currentUserProfile.gender : 'Erkek';
+            var authorImg = currentUserProfile.isRegistered ? currentUserProfile.image : 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500';
+
             if (fileInput.files && fileInput.files[0]) {
                 var reader = new FileReader();
                 reader.onload = function(e) {
-                    userPosts.unshift({ author: 'Siz', city: 'Türkiye', text: text, image: e.target.result });
+                    // unshift ile en üste eklenir, böylece paylaştığın gönderi ilk sırada görünür
+                    userPosts.unshift({ id: Date.now(), author: authorName, city: authorCity, gender: authorGender, image: authorImg, text: text, mediaImg: e.target.result, likesCount: 0, isLiked: false, comments: [] });
+                    localStorage.setItem('kismet_userPosts', JSON.stringify(userPosts));
                     alert('✨ Paylaşıldı!');
                     closeModal();
                     document.getElementById('postContentInput').value = '';
@@ -1207,12 +1046,52 @@
                 };
                 reader.readAsDataURL(fileInput.files[0]);
             } else {
-                userPosts.unshift({ author: 'Siz', city: 'Türkiye', text: text, image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500' });
+                userPosts.unshift({ id: Date.now(), author: authorName, city: authorCity, gender: authorGender, image: authorImg, text: text, mediaImg: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500', likesCount: 0, isLiked: false, comments: [] });
+                localStorage.setItem('kismet_userPosts', JSON.stringify(userPosts));
                 alert('✨ Paylaşıldı!');
                 closeModal();
                 document.getElementById('postContentInput').value = '';
                 renderFeed();
             }
+        }
+
+        function toggleLike(postId) {
+            var post = userPosts.find(function(p) { return p.id === postId; });
+            if(!post) return;
+            if(!post.likesCount) post.likesCount = 0;
+            
+            if(post.isLiked) {
+                post.isLiked = false;
+                post.likesCount -= 1;
+            } else {
+                post.isLiked = true;
+                post.likesCount += 1;
+            }
+            localStorage.setItem('kismet_userPosts', JSON.stringify(userPosts));
+            renderFeed();
+        }
+
+        function toggleCommentBox(postId) {
+            var box = document.getElementById('commentBox_' + postId);
+            if(box) {
+                box.style.display = box.style.display === 'block' ? 'none' : 'block';
+            }
+        }
+
+        function addComment(postId) {
+            var input = document.getElementById('commentInput_' + postId);
+            if(!input || !input.value.trim()) return;
+            var post = userPosts.find(function(p) { return p.id === postId; });
+            if(!post) return;
+            if(!post.comments) post.comments = [];
+            
+            var myName = currentUserProfile.isRegistered ? currentUserProfile.name : 'Mehmet';
+            post.comments.push(myName + ': ' + input.value.trim());
+            localStorage.setItem('kismet_userPosts', JSON.stringify(userPosts));
+            input.value = '';
+            renderFeed();
+            var box = document.getElementById('commentBox_' + postId);
+            if(box) box.style.display = 'block';
         }
 
         function renderFeed() {
@@ -1226,19 +1105,42 @@
             }
             for(var j=0; j<posts.length; j++) {
                 var p = posts[j];
+                var likeCountText = (p.likesCount || 0) + ' beğeni';
+                var likedClass = p.isLiked ? 'liked' : '';
+                var likedText = p.isLiked ? '❤️ Beğenildi' : '🤍 Beğen';
+                var mediaSrc = p.mediaImg || p.image;
+                var shortAuthorName = p.author.split(',')[0].trim();
+
+                var commentsHtml = '';
+                if(p.comments && p.comments.length > 0) {
+                    for(var c=0; c<p.comments.length; c++) {
+                        commentsHtml += '<div>• ' + p.comments[c] + '</div>';
+                    }
+                } else {
+                    commentsHtml = '<div style="color:#888;">Henüz yorum yok.</div>';
+                }
+
                 html += '<div class="post-card">' +
                     '<div class="post-user-info">' +
-                        '<div class="user-left">' +
-                            '<div class="user-avatar"><img src="' + p.image + '" alt=""></div>' +
+                        '<div class="user-left" onclick="openProfileDetail(\'' + p.author + '\', \'' + p.city + '\', \'' + (p.gender || 'Belirtilmemiş') + '\', \'' + p.image + '\', \'\', \'\', \'Bekar\', \'175\', \'70\')">' +
+                            '<div class="user-avatar"><img src="' + p.image + '" alt=""><span class="online-dot"></span></div>' +
                             '<div class="user-details"><h4>' + p.author + ' <span class="verified-badge">✔</span></h4><p>' + p.city + '</p></div>' +
                         '</div>' +
+                        '<button onclick="openWhatsAppChat(\'' + shortAuthorName + '\', \'' + p.image + '\')" style="background:#dfbe64; border:none; color:#fff; padding:5px 12px; border-radius:12px; font-size:11px; cursor:pointer;">Mesaj At</button>' +
                     '</div>' +
                     (p.text ? '<div class="post-text">' + p.text + '</div>' : '') +
-                    '<div class="post-media-container" onclick="openLightbox(\'' + p.image + '\')"><img src="' + p.image + '" alt=""></div>' +
-                    '<div class="post-stats"><span>0 beğeni</span></div>' +
+                    '<div class="post-media-container" onclick="openLightbox(\'' + mediaSrc + '\')"><img src="' + mediaSrc + '" alt=""></div>' +
+                    '<div class="post-stats"><span>' + likeCountText + '</span></div>' +
                     '<div class="post-actions">' +
-                        '<button class="action-btn" onclick="alert(\'Beğenildi ❤️\')">🤍 Beğen</button>' +
-                        '<button class="action-btn" onclick="alert(\'Yorum yapıldı 💬\')">💬 Yorum</button>' +
+                        '<button class="action-btn ' + likedClass + '" onclick="toggleLike(' + p.id + ')">' + likedText + '</button>' +
+                        '<button class="action-btn" onclick="toggleCommentBox(' + p.id + ')">💬 Yorum</button>' +
+                    '</div>' +
+                    '<div class="comment-section-box" id="commentBox_' + p.id + '" style="display: block;">' +
+                        '<div class="comment-list">' + commentsHtml + '</div>' +
+                        '<div class="comment-input-row">' +
+                            '<input type="text" id="commentInput_' + p.id + '" placeholder="Yorum yaz..."> ' +
+                            '<button class="btn-gold" style="width: 70px; padding: 6px; font-size: 11px;" onclick="addComment(' + p.id + ')">Gönder</button>' +
+                        '</div>' +
                     '</div>' +
                 '</div>';
             }
