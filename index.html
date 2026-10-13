@@ -551,6 +551,15 @@
                 }
             }, 600);
 
+            // Sözleşme daha önce onaylanmış mı kontrol et
+            var isTermsAccepted = JSON.parse(localStorage.getItem('kismet_termsAccepted')) || false;
+            var termsModal = document.getElementById('termsModal');
+            if (isTermsAccepted) {
+                if(termsModal) termsModal.style.display = 'none';
+            } else {
+                if(termsModal) termsModal.style.display = 'flex';
+            }
+
             // Sayfa yenilendiğinde en son kaldığı sekmeyi/sayfayı aç
             var navIndexMap = { 'anasayfa': 0, 'kesfet': 1, 'akis': 2, 'mesajlar': 3, 'profil': 4 };
             var targetNavIndex = navIndexMap[activePageName] !== undefined ? navIndexMap[activePageName] : 0;
@@ -566,6 +575,8 @@
         function acceptTerms() {
             var terms = document.getElementById('termsModal');
             if(terms) terms.style.display = 'none';
+            // Kabul edildiğini tarayıcı hafızasına kaydet
+            localStorage.setItem('kismet_termsAccepted', 'true');
         }
 
         function switchPage(pageName, element, isMyProfileClick) {
@@ -1035,7 +1046,6 @@
             if (fileInput.files && fileInput.files[0]) {
                 var reader = new FileReader();
                 reader.onload = function(e) {
-                    // unshift ile en üste eklenir, böylece paylaştığın gönderi ilk sırada görünür
                     userPosts.unshift({ id: Date.now(), author: authorName, city: authorCity, gender: authorGender, image: authorImg, text: text, mediaImg: e.target.result, likesCount: 0, isLiked: false, comments: [] });
                     localStorage.setItem('kismet_userPosts', JSON.stringify(userPosts));
                     alert('✨ Paylaşıldı!');
