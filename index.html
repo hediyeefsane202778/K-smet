@@ -167,7 +167,7 @@
             height: 270px;
             border-radius: 16px;
             overflow: hidden;
-            background: #eee;
+            background: #e5e5e5;
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
@@ -269,7 +269,6 @@
             display: flex;
             align-items: center;
             gap: 10px;
-            cursor: pointer;
         }
         .user-avatar {
             width: 45px;
@@ -300,7 +299,7 @@
         .post-image-container {
             width: 100%;
             background: #fcfcfc;
-            height: 320px;
+            height: 250px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -308,7 +307,6 @@
             font-size: 14px;
             border-top: 1px solid #f0f0f0;
             border-bottom: 1px solid #f0f0f0;
-            cursor: pointer;
         }
         .post-stats {
             display: flex;
@@ -410,7 +408,7 @@
             margin-bottom: 5px;
             color: #555;
         }
-        .form-group input {
+        .form-group input, .form-group textarea {
             width: 100%;
             padding: 10px;
             box-sizing: border-box;
@@ -539,6 +537,9 @@
             font-weight: bold;
             cursor: pointer;
         }
+        .chat-box {
+            padding: 15px;
+        }
         .bottom-nav {
             position: fixed;
             bottom: 0;
@@ -603,63 +604,7 @@
             </div>
         </div>
 
-        <div class="profiles-grid">
-            <div class="profile-card-grid">
-                <div style="position:absolute; top:0; left:0; width:100%; height:100%; background: #ccc; display:flex; align-items:center; justify-content:center; color:#666; font-size:12px;">[Fotoğraf 1]</div>
-                <div class="profile-card-gradient"></div>
-                <div class="profile-card-info">
-                    <h4>Seren, 34</h4>
-                    <p>Bolu, Türkiye</p>
-                    <div class="profile-card-actions">
-                        <button class="btn-card-like" onclick="alert('Beğenildi! ❤️')">❤️</button>
-                        <button class="btn-card-follow" onclick="alert('🔒 Takip etmek için 350 TL Premium üyelik gereklidir!')">➕ Takip Et</button>
-                    </div>
-                    <button class="btn-card-msg" onclick="alert('🔒 Mesaj göndermek için 350 TL Premium üyelik gereklidir!')">💬 Mesaj Gönder</button>
-                </div>
-            </div>
-
-            <div class="profile-card-grid">
-                <div style="position:absolute; top:0; left:0; width:100%; height:100%; background: #bbb; display:flex; align-items:center; justify-content:center; color:#555; font-size:12px;">[Fotoğraf 2]</div>
-                <div class="profile-card-gradient"></div>
-                <div class="profile-card-info">
-                    <h4>Gamze, 25</h4>
-                    <p>Konya, Türkiye</p>
-                    <div class="profile-card-actions">
-                        <button class="btn-card-like" onclick="alert('Beğenildi! ❤️')">❤️</button>
-                        <button class="btn-card-follow" onclick="alert('🔒 Takip etmek için 350 TL Premium üyelik gereklidir!')">➕ Takip Et</button>
-                    </div>
-                    <button class="btn-card-msg" onclick="alert('🔒 Mesaj göndermek için 350 TL Premium üyelik gereklidir!')">💬 Mesaj Gönder</button>
-                </div>
-            </div>
-
-            <div class="profile-card-grid">
-                <div style="position:absolute; top:0; left:0; width:100%; height:100%; background: #aaa; display:flex; align-items:center; justify-content:center; color:#444; font-size:12px;">[Fotoğraf 3]</div>
-                <div class="profile-card-gradient"></div>
-                <div class="profile-card-info">
-                    <h4>Yaren, 22</h4>
-                    <p>Çanakkale, Türkiye</p>
-                    <div class="profile-card-actions">
-                        <button class="btn-card-like" onclick="alert('Beğenildi! ❤️')">❤️</button>
-                        <button class="btn-card-follow" onclick="alert('🔒 Takip etmek için 350 TL Premium üyelik gereklidir!')">➕ Takip Et</button>
-                    </div>
-                    <button class="btn-card-msg" onclick="alert('🔒 Mesaj göndermek için 350 TL Premium üyelik gereklidir!')">💬 Mesaj Gönder</button>
-                </div>
-            </div>
-
-            <div class="profile-card-grid">
-                <div style="position:absolute; top:0; left:0; width:100%; height:100%; background: #999; display:flex; align-items:center; justify-content:center; color:#333; font-size:12px;">[Fotoğraf 4]</div>
-                <div class="profile-card-gradient"></div>
-                <div class="profile-card-info">
-                    <h4>Zeynep, 27 ✓</h4>
-                    <p>İstanbul, Türkiye</p>
-                    <div class="profile-card-actions">
-                        <button class="btn-card-like" onclick="alert('Beğenildi! ❤️')">❤️</button>
-                        <button class="btn-card-follow" onclick="alert('🔒 Takip etmek için 350 TL Premium üyelik gereklidir!')">➕ Takip Et</button>
-                    </div>
-                    <button class="btn-card-msg" onclick="alert('🔒 Mesaj göndermek için 350 TL Premium üyelik gereklidir!')">💬 Mesaj Gönder</button>
-                </div>
-            </div>
-        </div>
+        <div class="profiles-grid" id="dynamicProfilesGrid"></div>
     </div>
 
     <!-- KEŞFET SEKMESİ -->
@@ -675,35 +620,7 @@
             </div>
         </div>
 
-        <div class="profiles-grid">
-            <div class="profile-card-grid">
-                <div style="position:absolute; top:0; left:0; width:100%; height:100%; background: #d2b48c; display:flex; align-items:center; justify-content:center; color:#fff; font-size:12px;">[Keşif 1]</div>
-                <div class="profile-card-gradient"></div>
-                <div class="profile-card-info">
-                    <h4>Elif, 24</h4>
-                    <p>İzmir, Türkiye</p>
-                    <div class="profile-card-actions">
-                        <button class="btn-card-like" onclick="alert('Beğenildi! ❤️')">❤️</button>
-                        <button class="btn-card-follow" onclick="alert('🔒 Takip etmek için 350 TL Premium üyelik gereklidir!')">➕ Takip Et</button>
-                    </div>
-                    <button class="btn-card-msg" onclick="alert('🔒 Mesaj göndermek için 350 TL Premium üyelik gereklidir!')">💬 Mesaj Gönder</button>
-                </div>
-            </div>
-
-            <div class="profile-card-grid">
-                <div style="position:absolute; top:0; left:0; width:100%; height:100%; background: #bc8f8f; display:flex; align-items:center; justify-content:center; color:#fff; font-size:12px;">[Keşif 2]</div>
-                <div class="profile-card-gradient"></div>
-                <div class="profile-card-info">
-                    <h4>Merve, 28</h4>
-                    <p>Ankara, Türkiye</p>
-                    <div class="profile-card-actions">
-                        <button class="btn-card-like" onclick="alert('Beğenildi! ❤️')">❤️</button>
-                        <button class="btn-card-follow" onclick="alert('🔒 Takip etmek için 350 TL Premium üyelik gereklidir!')">➕ Takip Et</button>
-                    </div>
-                    <button class="btn-card-msg" onclick="alert('🔒 Mesaj göndermek için 350 TL Premium üyelik gereklidir!')">💬 Mesaj Gönder</button>
-                </div>
-            </div>
-        </div>
+        <div class="profiles-grid" id="exploreProfilesGrid"></div>
     </div>
 
     <!-- AKIŞ SEKMESİ -->
@@ -719,51 +636,29 @@
             </div>
         </div>
 
-        <div class="post-card">
-            <div class="post-user-info">
-                <div class="user-left" onclick="alert('Profil detayları...')">
-                    <div class="user-avatar">👤</div>
-                    <div class="user-details">
-                        <h4>Örnek Kullanıcı</h4>
-                        <p>Şehir, Türkiye</p>
-                    </div>
-                </div>
-                <button style="background:#d4af37; color:#fff; border:none; padding:6px 12px; border-radius:15px; font-size:12px; font-weight:bold; cursor:pointer;" onclick="alert('🔒 Takip Etmek için Premium Üyelik gereklidir!')">➕ Takip Et</button>
-            </div>
-            <div class="post-text">Ciddi evlilik ve mutlu bir yuva kurmak istiyorum.</div>
-            <div class="post-image-container">[ Profil Fotoğrafı ]</div>
-            <div class="post-stats">
-                <span>2 beğeni</span>
-                <span>1 istek</span>
-            </div>
-            <div class="post-actions">
-                <button class="action-btn" onclick="alert('Beğenildi! ❤️')">🤍 Beğen</button>
-                <button class="action-btn" onclick="alert('Yorum yapıldı.')">💬 Yorum</button>
-                <button class="action-btn" style="color:#d4af37;" onclick="alert('İstek gönderildi! 💌')">💌 İstek Gönder</button>
-            </div>
-        </div>
+        <div id="dynamicFeedList"></div>
 
         <div class="fab-btn" onclick="openModal()">+</div>
     </div>
 
     <div class="modal-overlay" id="postModal">
         <div class="modal-box">
-            <h3>✨ Yeni Gönderi Paylaş</h3>
-            <textarea class="modal-textarea" placeholder="Neler düşünüyorsunuz?"></textarea>
+            <h3>✨ Yeni İlan / Gönderi Paylaş</h3>
+            <textarea class="modal-textarea" id="postContentInput" placeholder="Neler düşünüyorsunuz? Evlilik niyetinizi paylaşın..."></textarea>
             <div style="display: flex; gap: 10px;">
                 <button class="btn-gold" style="background: #888;" onclick="closeModal()">İptal</button>
-                <button class="btn-gold" onclick="alert('Paylaşıldı!'); closeModal();">Paylaş</button>
+                <button class="btn-gold" onclick="addNewPost()">Paylaş</button>
             </div>
         </div>
     </div>
 
-    <!-- MESAJLAR SEKMESİ -->
+    <!-- MESAJLAR & UYGULAMA İÇİ SOHBET SEKMESİ -->
     <div id="page-mesajlar" class="page-section">
-        <div style="padding: 20px;">
-            <h3>💬 Mesajlar ve Takip Yetkisi</h3>
-            <p style="font-size: 13px; color: #555;">Kullanıcıları takip etmek ve mesajlaşmak için 350 TL (1 Aylık) Premium Abonelik gerekmektedir.</p>
+        <div class="chat-box" id="chatMainContainer">
+            <h3>💬 Mesajlaşma Yetkisi</h3>
+            <p style="font-size: 13px; color: #555;">Diğer kullanıcılarla uygulama içinde güvenle mesajlaşmak için 350 TL (1 Aylık) Premium Abonelik gerekmektedir.</p>
             
-            <div class="payment-container">
+            <div class="payment-container" style="margin: 15px 0;">
                 <h3>💳 350 TL - 1 Aylık Premium Abonelik</h3>
                 <p style="font-size: 12px; color: #555; margin-bottom: 8px;">Ziraat Bankası hesabımıza havale yapın:</p>
                 <p style="font-size: 12px; background: #f1f1f1; padding: 8px; border-radius: 5px; margin-bottom: 12px;">
@@ -772,7 +667,7 @@
                 </p>
                 <div class="form-group" style="margin-bottom: 10px;">
                     <label>Telefon Numaranız:</label>
-                    <input type="text" id="userPhoneInput" placeholder="05XX XXX XX XX">
+                    <input type="tel" id="userPhoneInput" placeholder="05XX XXX XX XX">
                 </div>
                 <div class="disclaimer-box">
                     <strong>Sorumluluk Reddi:</strong> Ödenen 350 TL sistem katkı payıdır, <strong>kesinlikle iade edilmez</strong>.
@@ -784,15 +679,51 @@
                 <button class="btn-gold" onclick="checkPayment()">Ödemeyi Bildir / Yetkileri Aç</button>
             </div>
         </div>
+
+        <div class="chat-box" id="activeChatContainer" style="display: none;">
+            <h3 style="color: #b8973c;">💬 Kısmet Canlı Sohbet Odası</h3>
+            <p style="font-size: 12px; color: #666;">Premium üyeliğiniz aktiftir. Diğer üyelerle buradan mesajlaşabilirsiniz.</p>
+            
+            <div id="chatMessagesList" style="background: #f9f9f9; border: 1px solid #ddd; border-radius: 8px; height: 220px; overflow-y: auto; padding: 10px; margin-bottom: 10px;"></div>
+            
+            <div style="display: flex; gap: 8px;">
+                <input type="text" id="chatInputText" placeholder="Mesajınızı yazın..." style="flex: 1; padding: 10px; border: 1px solid #ccc; border-radius: 8px; font-size: 13px;">
+                <button class="btn-gold" style="width: 90px; padding: 10px;" onclick="sendChatMessage()">Gönder</button>
+            </div>
+        </div>
     </div>
 
     <!-- PROFİL SEKMESİ -->
     <div id="page-profil" class="page-section">
         <div style="padding: 20px;" id="normalProfileContent">
-            <h3 style="color: #b8973c;">Kısmet ✨</h3>
-            <p style="font-size: 13px; color: #666;">Profilinizi ve bilgilerinizi buradan yönetebilirsiniz.</p>
+            <h3 style="color: #b8973c;">Kısmet ✨ Profil & Kayıt Ol</h3>
+            <p style="font-size: 13px; color: #666; margin-bottom: 15px;">Aramıza katılmak ve diğer insanlarla tanışmak için bilgilerini kaydet.</p>
             
-            <div style="margin-top: 40px; text-align: center;">
+            <div class="payment-container" style="margin: 0 0 20px 0;">
+                <div class="form-group">
+                    <label>Adınız:</label>
+                    <input type="text" id="regName" placeholder="Adınız">
+                </div>
+                <div class="form-group">
+                    <label>Soyadınız:</label>
+                    <input type="text" id="regSurname" placeholder="Soyadınız">
+                </div>
+                <div class="form-group">
+                    <label>Telefon Numarası:</label>
+                    <input type="tel" id="regPhone" placeholder="05XX XXX XX XX">
+                </div>
+                <div class="form-group">
+                    <label>Şehir:</label>
+                    <input type="text" id="regCity" placeholder="Şehir">
+                </div>
+                <div class="form-group">
+                    <label>Kendinizden / Niyetinizden bahsedin:</label>
+                    <textarea id="regBio" placeholder="Ciddi evlilik düşünüyorum..." style="width:100%; height:70px; padding:10px; border-radius:8px; border:1px solid #ccc; font-size:14px;"></textarea>
+                </div>
+                <button class="btn-gold" onclick="saveUserProfile()">Profili Kaydet ve Yayınla</button>
+            </div>
+
+            <div style="margin-top: 20px; text-align: center;">
                 <button onclick="showAdminLogin()" style="background: none; border: none; color: #999; font-size: 11px; text-decoration: underline; cursor: pointer;">🔐 Yönetici Girişi</button>
             </div>
         </div>
@@ -809,11 +740,10 @@
         <div class="admin-dashboard" id="adminDashboardPanel">
             <h3 style="color: #d4af37; margin-top: 0;">👑 Yönetici Paneli</h3>
             <div class="dashboard-card">
-                <h4>🔔 Ödeme Bildirimi #1</h4>
-                <p><strong>Telefon:</strong> 0555 123 45 67</p>
-                <p><strong>Tutar:</strong> 350 TL</p>
+                <h4>🔔 Ödeme Bildirimi</h4>
+                <p><strong>Durum:</strong> Bekleyen ödeme var</p>
                 <div class="admin-action-row">
-                    <button class="btn-approve" onclick="alert('Onaylandı!')">✅ Onayla</button>
+                    <button class="btn-approve" onclick="approvePremium()">✅ Onayla (Premium Aç)</button>
                     <button class="btn-reject" onclick="alert('Reddedildi.')">❌ Reddet</button>
                 </div>
             </div>
@@ -830,24 +760,41 @@
     </div>
 
     <script>
-        setTimeout(function() {
-            var splash = document.getElementById('splash');
-            splash.style.opacity = '0';
-            setTimeout(function() { splash.style.display = 'none'; }, 600);
-        }, 1500);
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                var splash = document.getElementById('splash');
+                if(splash) {
+                    splash.style.opacity = '0';
+                    setTimeout(function() { splash.style.display = 'none'; }, 600);
+                }
+            }, 1000);
+            checkChatAccess();
+        });
 
         function acceptTerms() {
-            document.getElementById('termsModal').style.display = 'none';
+            var terms = document.getElementById('termsModal');
+            if(terms) terms.style.display = 'none';
         }
 
         function switchPage(pageName, element) {
             var pages = document.querySelectorAll('.page-section');
-            pages.forEach(p => p.classList.remove('active-page'));
-            document.getElementById('page-' + pageName).classList.add('active-page');
+            pages.forEach(function(p) { p.classList.remove('active-page'); });
+            
+            var target = document.getElementById('page-'.concat(pageName));
+            if(target) target.classList.add('active-page');
 
             var navItems = document.querySelectorAll('.nav-item');
-            navItems.forEach(n => n.classList.remove('active'));
+            navItems.forEach(function(n) { n.classList.remove('active'); });
             if(element) { element.classList.add('active'); }
+
+            if(pageName === 'anasayfa' || pageName === 'kesfet') {
+                renderProfiles();
+            } else if(pageName === 'akis') {
+                renderFeed();
+            } else if(pageName === 'mesajlar') {
+                checkChatAccess();
+                renderChatMessages();
+            }
         }
 
         function showAdminLogin() { document.getElementById('adminLoginArea').style.display = 'block'; }
@@ -875,17 +822,191 @@
         function openModal() { document.getElementById('postModal').style.display = 'flex'; }
         function closeModal() { document.getElementById('postModal').style.display = 'none'; }
 
+        var isUserPremium = localStorage.getItem('kismet_is_premium') === 'true';
+
         function checkPayment() {
             var isChecked = document.getElementById('kvkkCheck').checked;
-            var phone = document.getElementById('userPhoneInput').value;
+            var phone = document.getElementById('userPhoneInput').value.trim();
             if (!isChecked) {
                 alert('⚠️ Lütfen abonelik ve iade şartları onay kutucuğunu işaretleyin.');
             } else if (!phone) {
                 alert('⚠️ Lütfen telefon numaranızı girin.');
             } else {
-                alert('Ödeme bildiriminiz yönetici paneline iletildi!');
+                alert('✅ Ödeme bildiriminiz yönetici paneline iletildi! Yönetici onayladığında uygulama içi sohbet odası açılacaktır.');
             }
         }
+
+        function approvePremium() {
+            isUserPremium = true;
+            localStorage.setItem('kismet_is_premium', 'true');
+            alert('🎉 Kullanıcının ödemesi onaylandı! Artık uygulama içi mesajlaşma yetkisi açık.');
+            checkChatAccess();
+            renderProfiles();
+            renderFeed();
+        }
+
+        function checkChatAccess() {
+            var payContainer = document.getElementById('chatMainContainer');
+            var chatContainer = document.getElementById('activeChatContainer');
+            if (isUserPremium) {
+                if(payContainer) payContainer.style.display = 'none';
+                if(chatContainer) chatContainer.style.display = 'block';
+            } else {
+                if(payContainer) payContainer.style.display = 'block';
+                if(chatContainer) chatContainer.style.display = 'none';
+            }
+        }
+
+        var chatMessages = JSON.parse(localStorage.getItem('kismet_chat_messages')) || [
+            { sender: 'Sistem', text: 'Kısmet Canlı Sohbet Odasına hoş geldiniz.' }
+        ];
+
+        function sendChatMessage() {
+            var input = document.getElementById('chatInputText');
+            var text = input.value.trim();
+            if(!text) return;
+
+            chatMessages.push({ sender: 'Siz (Premium)', text: text });
+            localStorage.setItem('kismet_chat_messages', JSON.stringify(chatMessages));
+            input.value = '';
+            renderChatMessages();
+        }
+
+        function renderChatMessages() {
+            var list = document.getElementById('chatMessagesList');
+            if(!list) return;
+
+            var html = '';
+            for(var k = 0; k < chatMessages.length; k++) {
+                var msg = chatMessages[k];
+                html += '<div style="margin-bottom: 8px; font-size: 13px;"><strong>' + msg.sender + ':</strong> ' + msg.text + '</div>';
+            }
+            list.innerHTML = html;
+            list.scrollTop = list.scrollHeight;
+        }
+
+        function openInAppChat(name) {
+            if (!isUserPremium) {
+                alert('🔒 Uygulama içinde mesajlaşmak için 350 TL Premium üyelik gereklidir! Lütfen Mesajlar sekmesinden ödeme bildirimi yapın.');
+                switchPage('mesajlar', document.querySelectorAll('.nav-item')[3]);
+                return;
+            }
+            switchPage('mesajlar', document.querySelectorAll('.nav-item')[3]);
+            alert('💬 ' + name + ' ile sohbet başlatılıyor...');
+        }
+
+        var registeredProfiles = JSON.parse(localStorage.getItem('kismet_profiles')) || [
+            { id: 1, name: 'Seren', age: '34', city: 'Bolu, Türkiye', bio: 'Mutlu bir yuvaya adım atmak istiyorum.' },
+            { id: 2, name: 'Gamze', age: '25', city: 'Konya, Türkiye', bio: 'Ciddi düşünüyorsanız tanışalım.' },
+            { id: 3, name: 'Yaren', age: '22', city: 'Çanakkale, Türkiye', bio: 'Hayat arkadaşımı arıyorum.' },
+            { id: 4, name: 'Zeynep', age: '27 ✓', city: 'İstanbul, Türkiye', bio: 'Samimi ve dürüst bir ilişki arıyorum.' }
+        ];
+
+        var userPosts = JSON.parse(localStorage.getItem('kismet_posts')) || [
+            { id: 1, author: 'Örnek Kullanıcı', city: 'Türkiye', text: 'Ciddi evlilik ve mutlu bir yuva kurmak istiyorum.', date: 'Bugün' }
+        ];
+
+        function saveUserProfile() {
+            var name = document.getElementById('regName').value.trim();
+            var surname = document.getElementById('regSurname').value.trim();
+            var phone = document.getElementById('regPhone').value.trim();
+            var city = document.getElementById('regCity').value.trim();
+            var bio = document.getElementById('regBio').value.trim();
+
+            if(!name || !phone) {
+                alert('⚠️ Lütfen adınızı ve telefon numaranızı girin!');
+                return;
+            }
+
+            var fullName = surname ? name + ' ' + surname : name;
+            registeredProfiles.unshift({ id: Date.now(), name: fullName, age: 'Yeni', city: city ? city + ', Türkiye' : 'Türkiye', bio: bio });
+            localStorage.setItem('kismet_profiles', JSON.stringify(registeredProfiles));
+
+            alert('✅ Profiliniz başarıyla kaydedildi!');
+            document.getElementById('regName').value = '';
+            document.getElementById('regSurname').value = '';
+            document.getElementById('regPhone').value = '';
+            document.getElementById('regCity').value = '';
+            document.getElementById('regBio').value = '';
+
+            switchPage('anasayfa', document.querySelectorAll('.nav-item')[0]);
+        }
+
+        function renderProfiles() {
+            var grid1 = document.getElementById('dynamicProfilesGrid');
+            var grid2 = document.getElementById('exploreProfilesGrid');
+            
+            var htmlContent = '';
+            for (var i = 0; i < registeredProfiles.length; i++) {
+                var p = registeredProfiles[i];
+                htmlContent += '<div class="profile-card-grid">' +
+                    '<div class="profile-card-gradient"></div>' +
+                    '<div class="profile-card-info">' +
+                        '<h4>' + p.name + ', ' + p.age + '</h4>' +
+                        '<p>' + p.city + '</p>' +
+                        '<div class="profile-card-actions">' +
+                            '<button class="btn-card-like" onclick="alert(\'Beğenildi! ❤️\')">❤️</button>' +
+                            '<button class="btn-card-follow" onclick="openInAppChat(\'' + p.name + '\')">➕ Takip Et</button>' +
+                        '</div>' +
+                        '<button class="btn-card-msg" onclick="openInAppChat(\'' + p.name + '\')">💬 Mesaj Gönder</button>' +
+                    '</div>' +
+                '</div>';
+            }
+
+            if(grid1) grid1.innerHTML = htmlContent;
+            if(grid2) grid2.innerHTML = htmlContent;
+        }
+
+        function addNewPost() {
+            var text = document.getElementById('postContentInput').value.trim();
+            if(!text) {
+                alert('Lütfen bir şeyler yazın!');
+                return;
+            }
+            userPosts.unshift({ id: Date.now(), author: 'Kullanıcı', city: 'Türkiye', text: text, date: 'Şimdi' });
+            localStorage.setItem('kismet_posts', JSON.stringify(userPosts));
+            alert('✨ Gönderiniz başarıyla paylaşıldı!');
+            closeModal();
+            document.getElementById('postContentInput').value = '';
+            renderFeed();
+        }
+
+        function renderFeed() {
+            var feedList = document.getElementById('dynamicFeedList');
+            if(!feedList) return;
+
+            var feedHtml = '';
+            for (var j = 0; j < userPosts.length; j++) {
+                var post = userPosts[j];
+                feedHtml += '<div class="post-card">' +
+                    '<div class="post-user-info">' +
+                        '<div class="user-left">' +
+                            '<div class="user-avatar">👤</div>' +
+                            '<div class="user-details">' +
+                                '<h4>' + post.author + '</h4>' +
+                                '<p>' + post.city + ' • ' + post.date + '</p>' +
+                            '</div>' +
+                        '</div>' +
+                        '<button style="background:#d4af37; color:#fff; border:none; padding:6px 12px; border-radius:15px; font-size:12px; font-weight:bold; cursor:pointer;" onclick="openInAppChat(\'' + post.author + '\')">➕ Takip Et</button>' +
+                    '</div>' +
+                    '<div class="post-text">' + post.text + '</div>' +
+                    '<div class="post-image-container">[ Profil Fotoğrafı ]</div>' +
+                    '<div class="post-stats">' +
+                        '<span>0 beğeni</span>' +
+                        '<span>0 istek</span>' +
+                    '</div>' +
+                    '<div class="post-actions">' +
+                        '<button class="action-btn" onclick="alert(\'Beğenildi! ❤️\')">🤍 Beğen</button>' +
+                        '<button class="action-btn" onclick="alert(\'Yorum yapıldı.\')">💬 Yorum</button>' +
+                        '<button class="action-btn" style="color:#d4af37;" onclick="openInAppChat(\'' + post.author + '\')">💌 Mesaj At</button>' +
+                    '</div>' +
+                '</div>';
+            }
+            feedList.innerHTML = feedHtml;
+        }
+
+        renderProfiles();
+        renderFeed();
     </script>
 </body>
 </html>
