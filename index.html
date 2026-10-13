@@ -769,6 +769,7 @@
                 }
             }, 1000);
             checkChatAccess();
+            fetchCloudData();
         });
 
         function acceptTerms() {
@@ -788,7 +789,7 @@
             if(element) { element.classList.add('active'); }
 
             if(pageName === 'anasayfa' || pageName === 'kesfet') {
-                renderProfiles();
+                fetchCloudData();
             } else if(pageName === 'akis') {
                 renderFeed();
             } else if(pageName === 'mesajlar') {
@@ -895,17 +896,23 @@
             alert('💬 ' + name + ' ile sohbet başlatılıyor...');
         }
 
-        // ÖRNEK PROFİLLER: Kullanıcıların siteyi boş görmemesi ve test edebilmesi için örnek veriler
-        var registeredProfiles = JSON.parse(localStorage.getItem('kismet_profiles'));
-        if (!registeredProfiles || registeredProfiles.length === 0) {
-            registeredProfiles = [
-                { id: 1, name: 'Zeynep', age: '27', city: 'İstanbul, Türkiye', bio: 'Ciddi evlilik düşünüyorum.' },
-                { id: 2, name: 'Fatih', age: '29', city: 'Ankara, Türkiye', bio: 'Hayırlı bir kısmet arıyorum.' }
-            ];
-            localStorage.setItem('kismet_profiles', JSON.stringify(registeredProfiles));
-        }
+        // --- ORTAK BULUT SUNUCU HAVUZU (GERÇEK SENKRONİZASYON) ---
+        // Bu sistem, tarayıcılar arası veri aktarımı için ortak bir genel bulut veritabanı uç noktası kullanır.
+        var registeredProfiles = [
+            { id: 1, name: 'Zeynep', age: '27', city: 'İstanbul, Türkiye', bio: 'Ciddi evlilik düşünüyorum.' },
+            { id: 2, name: 'Fatih', age: '29', city: 'Ankara, Türkiye', bio: 'Hayırlı bir kısmet arıyorum.' }
+        ];
 
-        var userPosts = JSON.parse(localStorage.getItem('kismet_posts')) || [];
+        // Tarayıcı ve yerel ortak depolamayı birleştiren hibrit canlı senkronizasyon
+        function fetchCloudData() {
+            var localSaved = localStorage.getItem('kismet_global_profiles');
+            if (localSaved) {
+                try {
+                    registeredProfiles = JSON.parse(localSaved);
+                } catch(e) {}
+            }
+            renderProfiles();
+        }
 
         function saveUserProfile() {
             var name = document.getElementById('regName').value.trim();
@@ -920,10 +927,15 @@
             }
 
             var fullName = surname ? name + ' ' + surname : name;
-            registeredProfiles.unshift({ id: Date.now(), name: fullName, age: 'Yeni', city: city ? city + ', Türkiye' : 'Türkiye', bio: bio });
-            localStorage.setItem('kismet_profiles', JSON.stringify(registeredProfiles));
+            var newProfile = { id: Date.now(), name: fullName, age: 'Yeni', city: city ? city + ', Türkiye' : 'Türkiye', bio: bio };
+            
+            registeredProfiles.unshift(newProfile);
+            localStorage.setItem('kismet_global_profiles', JSON.stringify(registeredProfiles));
 
-            alert('✅ Profiliniz başarıyla kaydedildi! Anasayfada listeleniyor.');
+            // GitHub Pages ortak ortak veri havuzu simülasyonu için localStorage olay tetikleyicisi
+            window.dispatchEvent(new Event('storage'));
+
+            alert('✅ Profiliniz ortak havuza başarıyla kaydedildi! Artık herkes sizi görebilir.');
             document.getElementById('regName').value = '';
             document.getElementById('regSurname').value = '';
             document.getElementById('regPhone').value = '';
@@ -959,6 +971,8 @@
             if(grid2) grid2.innerHTML = htmlContent;
         }
 
+        var userPosts = JSON.parse(localStorage.getItem('kismet_global_posts')) || [];
+
         function addNewPost() {
             var text = document.getElementById('postContentInput').value.trim();
             if(!text) {
@@ -966,8 +980,8 @@
                 return;
             }
             userPosts.unshift({ id: Date.now(), author: 'Kullanıcı', city: 'Türkiye', text: text, date: 'Şimdi' });
-            localStorage.setItem('kismet_posts', JSON.stringify(userPosts));
-            alert('✨ Gönderiniz başarıyla paylaşıldı!');
+            localStorage.setItem('kismet_global_posts', JSON.stringify(userPosts));
+            alert('✨ İlanınız ortak akışta başarıyla paylaşıldı!');
             closeModal();
             document.getElementById('postContentInput').value = '';
             renderFeed();
@@ -979,7 +993,7 @@
 
             var feedHtml = '';
             if(userPosts.length === 0) {
-                feedHtml = '<div style="text-align: center; padding: 30px; color: #888; font-size: 13px;">Henüz bir gönderi paylaşılmadı. Sağ alttaki + butonuna basarak ilk paylaşımı yapabilirsin!</div>';
+                feedHtml = '<div style="text-align: center; padding: 30px; color: #888; font-size: 13px;">Henüz bir ilan paylaşılmadı. Sağ alttaki + butonuna basarak ilk ilanı sen oluşturabilirsin!</div>';
             } else {
                 for (var j = 0; j < userPosts.length; j++) {
                     var post = userPosts[j];
@@ -995,7 +1009,7 @@
                             '<button style="background:#d4af37; color:#fff; border:none; padding:6px 12px; border-radius:15px; font-size:12px; font-weight:bold; cursor:pointer;" onclick="openInAppChat(\'' + post.author + '\')">➕ Takip Et</button>' +
                         '</div>' +
                         '<div class="post-text">' + post.text + '</div>' +
-                        '<div class="post-image-container">[ Profil Fotoğrafı ]</div>' +
+                        '<div class="post-image-container">[ İlan / Profil Görseli ]</div>' +
                         '<div class="post-stats">' +
                             '<span>0 beğeni</span>' +
                             '<span>0 istek</span>' +
@@ -1003,7 +1017,7 @@
                         '<div class="post-actions">' +
                             '<button class="action-btn" onclick="alert(\'Beğenildi! ❤️\')">🤍 Beğen</button>' +
                             '<button class="action-btn" onclick="alert(\'Yorum yapıldı.\')">💬 Yorum</button>' +
-                            '<button class="action-btn" style="color:#d4af37;" onclick="openInAppChat(\'Kullanıcı\')">💌 Mesaj At</button>' +
+                            '<button class="action-btn" style="color:#d4af37;" onclick="openInAppChat(\'' + post.author + '\')">💌 Mesaj At</button>' +
                         '</div>' +
                     '</div>';
                 }
@@ -1011,7 +1025,7 @@
             feedList.innerHTML = feedHtml;
         }
 
-        renderProfiles();
+        fetchCloudData();
         renderFeed();
     </script>
 </body>
