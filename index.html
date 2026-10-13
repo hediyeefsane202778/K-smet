@@ -497,7 +497,6 @@
     </div>
 
     <script>
-        // LocalStorage'dan verileri çek
         var currentUserProfile = JSON.parse(localStorage.getItem('kismet_userProfile')) || {
             name: 'Mehmet',
             age: '28',
@@ -551,7 +550,6 @@
                 }
             }, 600);
 
-            // Sözleşme daha önce onaylanmış mı kontrol et
             var isTermsAccepted = JSON.parse(localStorage.getItem('kismet_termsAccepted')) || false;
             var termsModal = document.getElementById('termsModal');
             if (isTermsAccepted) {
@@ -560,7 +558,6 @@
                 if(termsModal) termsModal.style.display = 'flex';
             }
 
-            // Sayfa yenilendiğinde en son kaldığı sekmeyi/sayfayı aç
             var navIndexMap = { 'anasayfa': 0, 'kesfet': 1, 'akis': 2, 'mesajlar': 3, 'profil': 4 };
             var targetNavIndex = navIndexMap[activePageName] !== undefined ? navIndexMap[activePageName] : 0;
             switchPage(activePageName, document.getElementsByClassName('nav-item')[targetNavIndex], false);
@@ -575,7 +572,6 @@
         function acceptTerms() {
             var terms = document.getElementById('termsModal');
             if(terms) terms.style.display = 'none';
-            // Kabul edildiğini tarayıcı hafızasına kaydet
             localStorage.setItem('kismet_termsAccepted', 'true');
         }
 
@@ -1148,5 +1144,14 @@
                     '<div class="comment-section-box" id="commentBox_' + p.id + '" style="display: block;">' +
                         '<div class="comment-list">' + commentsHtml + '</div>' +
                         '<div class="comment-input-row">' +
-                            '<input type="text" id="commentInput_' + p.id + '" placeholder="Yorum yaz..."> ' +
-                            '<bu
+                            '<input type="text" id="commentInput_' + p.id + '" placeholder="Yorum yaz...">' +
+                            '<button class="btn-gold" style="width: 70px; padding: 6px 0; font-size: 11px;" onclick="addComment(' + p.id + ')">Gönder</button>' +
+                        '</div>' +
+                    '</div>' +
+                '</div>';
+            }
+            feedList.innerHTML = html;
+        }
+    </script>
+</body>
+</html>
