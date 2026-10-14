@@ -191,8 +191,6 @@
             width: 100%; height: 90px; padding: 10px; box-sizing: border-box;
             border: 1px solid #ccc; border-radius: 8px; font-size: 14px; resize: none; margin-bottom: 10px;
         }
-        .payment-container { background: #fdfdfd; border: 1px solid #e0e0e0; margin: 15px; padding: 20px; border-radius: 15px; text-align: center; }
-        .payment-container h3 { margin-top: 0; color: #b8973c; font-size: 16px; }
         .form-group { margin-bottom: 12px; text-align: left; }
         .form-group label { display: block; font-size: 13px; margin-bottom: 5px; color: #555; font-weight: 500; }
         .form-group input, .form-group select, .form-group textarea {
@@ -239,7 +237,7 @@
         }
         .msg-me { background: #dcf8c6; margin-left: auto; text-align: left; border-top-right-radius: 2px; }
         .msg-other { background: #fff; border: 1px solid #ddd; margin-right: auto; text-align: left; border-top-left-radius: 2px; }
-        .msg-time { font-size: 9.5px; color: #888; text-align: right; margin-top: 3px; }
+        .msg-time-row { display: flex; justify-content: flex-end; align-items: center; gap: 4px; font-size: 9.5px; color: #888; margin-top: 3px; }
         .msg-delete-btn {
             position: absolute; top: 4px; right: 6px; font-size: 10px; color: #888; background: none; border: none; cursor: pointer; display: none;
         }
@@ -250,9 +248,9 @@
 
     <!-- ÖNBELLEĞİ OTOMATİK TEMİZLEME KOMUTU -->
     <script>
-        if(localStorage.getItem('kismet_cleared_clean_v2') !== 'true') {
+        if(localStorage.getItem('kismet_cleared_clean_v18') !== 'true') {
             localStorage.clear();
-            localStorage.setItem('kismet_cleared_clean_v2', 'true');
+            localStorage.setItem('kismet_cleared_clean_v18', 'true');
         }
     </script>
 
@@ -291,6 +289,12 @@
             <div class="info-badge-box" id="modalProfileInfo"></div>
             <div class="music-player-box" id="modalProfileMusic" style="display:none; background: #f5f5f5; border-radius: 10px; padding: 8px 12px; font-size: 12px; color: #555; margin-bottom: 15px; text-align: left;"></div>
 
+            <!-- FOTOĞRAFLARIM / ALBÜM BÖLÜMÜ -->
+            <div style="text-align: left; margin: 20px 0 10px 0;">
+                <h4 style="margin: 0 0 8px 0; color: #b8973c; font-size: 15px;">🖼️ Fotoğraflarım / Albüm</h4>
+                <div id="modalUserGallery" style="display: flex; gap: 8px; overflow-x: auto; padding-bottom: 5px;"></div>
+            </div>
+
             <div class="profile-stats-row">
                 <div><strong style="display:block; font-size:15px; color:#000;">0</strong> Takipçiler</div>
                 <div><strong style="display:block; font-size:15px; color:#000;">0</strong> Takip Ettikleri</div>
@@ -316,7 +320,8 @@
                 <strong>2. Kullanıcı Tarafından Oluşturulan İçerik (UGC) ve Taciz Politikası:</strong> Uygulama içerisinde küfür, hakaret, taciz, nefret söylemi, şiddet, dolandırıcılık veya müstehcen içerik paylaşımı kesinlikle yasaktır. Bu kurallara uymayan kullanıcılar sistem tarafından anında engellenir.<br><br>
                 <strong>3. Şikayet ve Moderasyon Mekanizması:</strong> Rahatsızlık veren profilleri, gönderileri veya mesajları şikayet edebilir ya da engelleyebilirsiniz. Şikayet edilen içerikler moderasyon ekibimiz tarafından incelenerek 24 saat içinde kaldırılır.<br><br>
                 <strong>4. Veri Gizliliği ve KVKK:</strong> Kişisel verileriniz (profil bilgileri, fotoğraflar ve mesajlar) 6698 sayılı KVKK ve Google Gizlilik Politikaları'na uygun olarak güvenle korunur, üçüncü şahıslarla asla paylaşılmaz.<br><br>
-                <strong>5. Dijital Faturalandırma:</strong> Uygulama içi dijital ürün satışları Google Play Faturalandırma Sistemi (Tüketilebilir Paketler) altyapısı güvencesindedir.
+                <strong>5. Hesap Silme Hakkı:</strong> Kullanıcılar istedikleri zaman profil bölümünden hesaplarını ve tüm kişisel verilerini kalıcı olarak silebilirler.<br><br>
+                <strong>6. Dijital Faturalandırma:</strong> Uygulama içi dijital ürün satışları Google Play Faturalandırma Sistemi (Tüketilebilir Paketler) altyapısı güvencesindedir.
             </div>
             <button class="btn-gold" onclick="acceptTerms()">Okudum ve Kabul Ediyorum</button>
         </div>
@@ -330,7 +335,7 @@
                 <span class="explore-tab-inactive">Seçkin ✨</span>
             </div>
             <div class="header-right">
-                <div class="badge-coin-top" id="topMessageBalanceBadge">💬 80</div>
+                <div class="badge-coin-top" id="topMessageBalanceBadge">💬 0</div>
                 <div class="badge-icon-top" onclick="alert('3 yeni bildiriminiz var.')">🔔<div class="notification-dot">3</div></div>
             </div>
         </div>
@@ -345,7 +350,7 @@
                 <span class="explore-tab-inactive">Seçkin ✨</span>
             </div>
             <div class="header-right">
-                <div class="badge-coin-top" id="topMessageBalanceBadge2">💬 80</div>
+                <div class="badge-coin-top" id="topMessageBalanceBadge2">💬 0</div>
             </div>
         </div>
         <div class="profiles-grid" id="exploreProfilesGrid"></div>
@@ -365,7 +370,7 @@
 
     <div class="modal-overlay" id="postModal">
         <div class="modal-box">
-            <h3>✨ Yeni İlan Paylaş</h3>
+            <h3>✨ Yeni Gönderi Paylaş</h3>
             <textarea class="modal-textarea" id="postContentInput" placeholder="Neler düşünüyorsunuz?..."></textarea>
             
             <div style="margin-bottom: 12px; text-align: left;">
@@ -383,21 +388,11 @@
     <!-- MESAJLAR -->
     <div id="page-mesajlar" class="page-section">
         <div class="chat-box" id="chatMainContainer">
-            <div id="unpaidChatWarning" style="display: none;">
-                <h3>💬 Mesaj Hakkı Bitti</h3>
-                <p style="font-size: 13px; color: #555;">Sohbetlere kaldığınız yerden devam etmek için 80 mesajlık paket alabilirsiniz.</p>
-                <div class="payment-container">
-                    <h3>💳 80 Mesaj Paketi (400 TL)</h3>
-                    <p style="font-size: 12px; color: #666; margin-bottom: 15px;">Google Play güvenli ödeme altyapısı ile anında hesabınıza yüklenir.</p>
-                    <button class="btn-gold" onclick="simulateGooglePlayPurchase()">Google ile Öde (400 TL) - 80 Mesaj Al</button>
-                </div>
-            </div>
-
-            <div id="paidChatListArea">
+            <div id="paidChatListArea" style="display: block;">
                 <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
                     <h3 style="color: #b8973c; margin: 0; text-align: left;">💬 Sohbetler</h3>
                     <div style="background: #fdf6e2; border: 1px solid #f2e2b3; color: #8a7324; padding: 5px 12px; border-radius: 12px; font-size: 12px; font-weight: bold;">
-                        Kalan Mesaj: <span id="remainingMessagesCount">80</span>
+                        Kalan Mesaj: <span id="remainingMessagesCount">0</span>
                     </div>
                 </div>
                 <div id="whatsappChatList"></div>
@@ -407,14 +402,14 @@
         <!-- BİREBİR ÖZEL SOHBET PENCERESİ -->
         <div id="activeChatContainer" style="display: none;">
             <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px; border-bottom: 1px solid #ddd; padding-bottom: 6px; background: #fcfcfc; padding: 6px 8px; border-radius: 8px;">
-                <div style="display: flex; align-items: center; gap: 8px;">
+                <div style="display: flex; align-items: center; gap: 8px; cursor: pointer;" onclick="openProfileFromActiveChat()">
                     <div style="position: relative;">
                         <img id="activeChatAvatar" src="" style="width: 36px; height: 36px; border-radius: 50%; object-fit: cover;" alt="">
                         <span class="online-dot" style="width: 10px; height: 10px; bottom: 0; right: 0;"></span>
                     </div>
                     <div style="text-align: left;">
                         <h3 id="activeChatTitle" style="color: #111; margin: 0; font-size: 14px; font-weight: bold;">Sohbet</h3>
-                        <p id="activeChatStatusText" style="margin: 0; font-size: 10.5px; color: #28a745;">● Çevrimiçi</p>
+                        <p id="activeChatStatusText" style="margin: 0; font-size: 10.5px; color: #28a745;">● Çevrimiçi (Profili Gör)</p>
                     </div>
                 </div>
                 <div>
@@ -440,13 +435,30 @@
     <div id="page-profil" class="page-section">
         <div style="padding: 20px; text-align: left;" id="normalProfileContent">
             <h3 style="color: #b8973c;">Profil ve Kayıt Ol</h3>
-            <div class="payment-container" style="margin: 0 0 20px 0;">
+            <div class="payment-container" style="margin: 0 0 20px 0; background: #fdfdfd; border: 1px solid #e0e0e0; padding: 20px; border-radius: 15px;">
                 <div class="form-group">
                     <label>📷 Profil Fotoğrafı:</label>
                     <input type="file" id="userProfilePicInput" accept="image/*" style="font-size: 12px; width: 100%;">
                 </div>
+                
+                <!-- Fotoğraflarım Albümüne Fotoğraf Yükleme -->
+                <div class="form-group">
+                    <label>🖼️ Fotoğraflarım Albümüne Ekle (İstediğiniz Kadar):</label>
+                    <input type="file" id="userGalleryPhotoInput" accept="image/*" style="font-size: 12px; width: 100%; margin-bottom: 6px;">
+                    <button type="button" class="btn-gold" style="padding: 6px 12px; font-size: 12px; border-radius: 8px;" onclick="addPhotoToMyGallery()">Albüme Fotoğraf Ekle</button>
+                </div>
+                <div id="myGalleryPreview" style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px;"></div>
+
                 <div class="form-group"><label>Ad Soyad:</label><input type="text" id="regName" placeholder="Adınız Soyadınız"></div>
+                <div class="form-group"><label>📅 Doğum Tarihiniz:</label><input type="date" id="regDob"></div>
                 <div class="form-group"><label>Şehir:</label><input type="text" id="regCity" placeholder="Şehir"></div>
+                
+                <!-- HAKKINDA / DURUM YAZISI ALANI (Serbest Metin) -->
+                <div class="form-group">
+                    <label>💭 Hakkında / Durum Yazısı (İstediğinizi yazın):</label>
+                    <input type="text" id="regStatus" placeholder="Örn: Hayatın tadını çıkarıyorum...">
+                </div>
+
                 <div class="form-group">
                     <label>Cinsiyet:</label>
                     <select id="regGender">
@@ -466,7 +478,13 @@
                 </div>
                 <div class="form-group"><label>Boy (cm):</label><input type="number" id="regHeight" placeholder="Örn: 175"></div>
                 <div class="form-group"><label>Kilo (kg):</label><input type="number" id="regWeight" placeholder="Örn: 70"></div>
+                
                 <button class="btn-gold" onclick="saveUserProfile()">Profili Kaydet</button>
+                
+                <!-- GOOGLE PLAY ZORUNLU: HESABIMI VE VERİLERİMİ SİL BUTONU -->
+                <div style="margin-top: 20px; border-top: 1px solid #eee; padding-top: 15px; text-align: center;">
+                    <button type="button" onclick="deleteMyAccount()" style="background: #fff0f0; border: 1px solid #ff3b30; color: #ff3b30; padding: 10px 15px; border-radius: 20px; font-size: 12px; font-weight: bold; cursor: pointer; width: 100%;">🗑️ Hesabımı ve Verilerimi Kalıcı Olarak Sil</button>
+                </div>
             </div>
         </div>
     </div>
@@ -497,7 +515,6 @@
 
         const app = initializeApp(firebaseConfig);
         const db = getDatabase(app);
-        console.log("Firebase başarıyla bağlandı!");
     </script>
 
     <script>
@@ -507,6 +524,7 @@
             city: '',
             gender: '',
             image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500',
+            gallery: [],
             status: '',
             music: '',
             marital: '',
@@ -516,8 +534,8 @@
         };
 
         var registeredProfiles = JSON.parse(localStorage.getItem('kismet_registeredProfiles')) || [
-            { name: 'Esila Yılmaz, 19', city: 'Bilecik, Türkiye', gender: 'Kadın', image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500', status: 'Ciddi evlilik düşünüyorum', music: 'Müslüm Gürses - Affet', marital: 'Bekar', height: '168', weight: '54' },
-            { name: 'Kubilay Demir, 29', city: 'Kocaeli, Türkiye', gender: 'Erkek', image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500', status: '', music: '', marital: 'Bekar', height: '180', weight: '78' }
+            { name: 'Esila Yılmaz, 19', city: 'Bilecik, Türkiye', gender: 'Kadın', image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500', gallery: ['https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500'], status: 'Hayatı ve gezmeyi çok seviyorum', music: 'Müslüm Gürses - Affet', marital: 'Bekar', height: '168', weight: '54' },
+            { name: 'Kubilay Demir, 29', city: 'Kocaeli, Türkiye', gender: 'Erkek', image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500', gallery: ['https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500'], status: 'Yeni insanlarla tanışmak harika', music: '', marital: 'Bekar', height: '180', weight: '78' }
         ];
 
         var userPosts = JSON.parse(localStorage.getItem('kismet_userPosts')) || [
@@ -542,7 +560,7 @@
         };
 
         var blockedUsers = JSON.parse(localStorage.getItem('kismet_blockedUsers')) || {};
-        var messageBalance = localStorage.getItem('kismet_messageBalance') !== null ? parseInt(localStorage.getItem('kismet_messageBalance')) : 80;
+        var messageBalance = localStorage.getItem('kismet_messageBalance') !== null ? parseInt(localStorage.getItem('kismet_messageBalance')) : 100;
         var activePageName = localStorage.getItem('kismet_activePage') || 'anasayfa';
 
         window.onload = function() {
@@ -570,6 +588,7 @@
                 updateBalanceDisplay();
                 renderProfiles();
                 renderFeed();
+                renderMyGalleryPreview();
             } catch(e) {
                 console.error("Yükleme hatası:", e);
             }
@@ -593,7 +612,7 @@
 
         function switchPage(pageName, element, isMyProfileClick) {
             if (pageName === 'profil' && isMyProfileClick && currentUserProfile.isRegistered) {
-                openProfileDetail(currentUserProfile.name + ', ' + currentUserProfile.age, currentUserProfile.city, currentUserProfile.gender, currentUserProfile.image, currentUserProfile.status, currentUserProfile.music, currentUserProfile.marital, currentUserProfile.height, currentUserProfile.weight);
+                openProfileDetail(currentUserProfile.name, currentUserProfile.city, currentUserProfile.gender, currentUserProfile.image, currentUserProfile.status, currentUserProfile.music, currentUserProfile.marital, currentUserProfile.height, currentUserProfile.weight, currentUserProfile.gallery);
                 return;
             }
 
@@ -613,7 +632,7 @@
             }
             if(element) element.classList.add('active');
 
-            if(pageName === 'mesajlar') checkChatAccess();
+            if(pageName === 'mesajlar') renderWhatsAppChatList();
         }
 
         var currentFeedType = 'sanozel';
@@ -637,7 +656,34 @@
             return (hours < 10 ? '0' + hours : hours) + ':' + (minutes < 10 ? '0' + minutes : minutes);
         }
 
-        function openProfileDetail(name, city, gender, imageSrc, status, music, marital, height, weight) {
+        function addPhotoToMyGallery() {
+            var fileInput = document.getElementById('userGalleryPhotoInput');
+            if (!fileInput.files || !fileInput.files[0]) {
+                alert('Lütfen albüme eklemek için bir fotoğraf seçin!');
+                return;
+            }
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                currentUserProfile.gallery.push(e.target.result);
+                localStorage.setItem('kismet_userProfile', JSON.stringify(currentUserProfile));
+                renderMyGalleryPreview();
+                fileInput.value = '';
+                alert('✨ Fotoğraf albümünüze eklendi!');
+            };
+            reader.readAsDataURL(fileInput.files[0]);
+        }
+
+        function renderMyGalleryPreview() {
+            var previewContainer = document.getElementById('myGalleryPreview');
+            if(!previewContainer) return;
+            var html = '';
+            for(var i=0; i<currentUserProfile.gallery.length; i++) {
+                html += '<img src="' + currentUserProfile.gallery[i] + '" style="width: 55px; height: 55px; object-fit: cover; border-radius: 8px; border: 1px solid #ccc;">';
+            }
+            previewContainer.innerHTML = html;
+        }
+
+        function openProfileDetail(name, city, gender, imageSrc, status, music, marital, height, weight, gallery) {
             var shortName = name.split(',')[0].trim();
             if (blockedUsers[shortName]) {
                 alert('Bu kullanıcıyı engellediğiniz için profili görüntüleyemezsiniz.');
@@ -650,7 +696,7 @@
             
             var statusBox = document.getElementById('modalProfileStatus');
             if(status && status.trim() !== '') {
-                statusBox.innerText = '💭 Durum: ' + status;
+                statusBox.innerText = '💭 Hakkında: ' + status;
                 statusBox.style.display = 'block';
             } else {
                 statusBox.style.display = 'none';
@@ -680,6 +726,14 @@
 
             document.getElementById('modalProfileImg').src = imageSrc || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500';
 
+            var galleryContainer = document.getElementById('modalUserGallery');
+            var galleryHtml = '';
+            var photos = gallery || [imageSrc];
+            for(var g=0; g<photos.length; g++) {
+                galleryHtml += '<img src="' + photos[g] + '" style="width: 70px; height: 70px; object-fit: cover; border-radius: 10px; cursor: pointer; border: 2px solid #d4af37; flex-shrink: 0;" onclick="openLightbox(\'' + photos[g] + '\')">';
+            }
+            galleryContainer.innerHTML = galleryHtml;
+
             var reqBtn = document.getElementById('friendRequestBtn');
             if (sentRequests[name]) {
                 reqBtn.innerHTML = '<span>✓</span>';
@@ -692,6 +746,24 @@
             }
 
             document.getElementById('profileDetailModal').style.display = 'flex';
+        }
+
+        function openProfileByName(fullName) {
+            var found = registeredProfiles.find(function(p) {
+                return p.name.includes(fullName) || fullName.includes(p.name.split(',')[0].trim());
+            });
+            if (found) {
+                var pGal = found.gallery ? found.gallery : [found.image];
+                openProfileDetail(found.name, found.city, found.gender || 'Belirtilmemiş', found.image, found.status || '', found.music || '', found.marital || 'Bekar', found.height || '175', found.weight || '70', pGal);
+            } else {
+                openProfileDetail(fullName + ', 25', 'Türkiye', 'Belirtilmemiş', activeChatAvatar, '', '', 'Bekar', '175', '70', [activeChatAvatar]);
+            }
+        }
+
+        function openProfileFromActiveChat() {
+            if (activeChatUser) {
+                openProfileByName(activeChatUser);
+            }
         }
 
         function sendFriendRequest() {
@@ -707,7 +779,7 @@
 
         function reportUserProfile() {
             if (!selectedProfileForDetail) return;
-            alert('⚠️ Şikayetiniz alındı. Google Play güvenlik standartları gereği bu profil incelenmek üzere işaretlendi.');
+            alert('⚠️ Şikayetiniz alındı. Güvenlik standartları gereği bu profil incelenmek üzere işaretlendi.');
             closeProfileDetail();
         }
 
@@ -738,24 +810,6 @@
         function openModal() { document.getElementById('postModal').style.display = 'flex'; }
         function closeModal() { document.getElementById('postModal').style.display = 'none'; }
 
-        function simulateGooglePlayPurchase() {
-            messageBalance += 80;
-            updateBalanceDisplay();
-            alert('🎉 Google Play Faturalandırma Başarılı (400 TL)! Hesabınıza 80 mesaj eklendi.');
-            checkChatAccess();
-        }
-
-        function checkChatAccess() {
-            if (messageBalance > 0) {
-                document.getElementById('unpaidChatWarning').style.display = 'none';
-                document.getElementById('paidChatListArea').style.display = 'block';
-                renderWhatsAppChatList();
-            } else {
-                document.getElementById('unpaidChatWarning').style.display = 'block';
-                document.getElementById('paidChatListArea').style.display = 'none';
-            }
-        }
-
         function renderWhatsAppChatList() {
             var listContainer = document.getElementById('whatsappChatList');
             var html = '';
@@ -766,13 +820,13 @@
                 var lastMsgText = lastMsgObj ? (lastMsgObj.sender + ': ' + (lastMsgObj.type === 'image' ? '📷 [Fotoğraf]' : lastMsgObj.content)) : 'Henüz mesaj yok';
                 var dotClass = chat.online ? 'online-dot' : 'offline-dot';
                 
-                html += '<div class="chat-item" onclick="openWhatsAppChat(\'' + name + '\', \'' + chat.avatar + '\')">' +
-                    '<div class="chat-avatar-wrapper">' +
+                html += '<div class="chat-item">' +
+                    '<div class="chat-avatar-wrapper" onclick="event.stopPropagation(); openProfileByName(\'' + name + '\')">' +
                         '<img class="chat-avatar" src="' + chat.avatar + '" alt="">' +
                         '<span class="' + dotClass + '"></span>' +
                     '</div>' +
-                    '<div class="chat-info">' +
-                        '<h4>' + name + ' <span style="font-size: 10px; color: ' + (chat.online ? '#28a745' : '#888') + '; font-weight: normal;">' + (chat.online ? '● Çevrimiçi' : '○ Çevrimdışı') + '</span></h4>' +
+                    '<div class="chat-info" onclick="openWhatsAppChat(\'' + name + '\', \'' + chat.avatar + '\')">' +
+                        '<h4 onclick="event.stopPropagation(); openProfileByName(\'' + name + '\')">' + name + ' <span style="font-size: 10px; color: ' + (chat.online ? '#28a745' : '#888') + '; font-weight: normal;">' + (chat.online ? '● Çevrimiçi' : '○ Çevrimdışı') + '</span></h4>' +
                         '<p>' + lastMsgText + '</p>' +
                     '</div>' +
                 '</div>';
@@ -783,11 +837,6 @@
         function openWhatsAppChat(name, avatar) {
             if (blockedUsers[name]) {
                 alert('Engellediğiniz bir kullanıcıyla mesajlaşamazsınız.');
-                return;
-            }
-            if (messageBalance <= 0) {
-                alert('🔒 Mesaj hakkınız kalmadı. Google Play üzerinden 80 mesajlık paket alabilirsiniz.');
-                switchPage('mesajlar', document.getElementsByClassName('nav-item')[3]);
                 return;
             }
             activeChatUser = name;
@@ -813,55 +862,6 @@
             document.getElementById('activeChatContainer').style.display = 'none';
             document.getElementById('chatMainContainer').style.display = 'block';
             renderWhatsAppChatList();
-        }
-
-        function sendChatMessage() {
-            var input = document.getElementById('chatInputText');
-            var text = input.value.trim();
-            if(!text || !activeChatUser) return;
-
-            if (messageBalance <= 0) {
-                alert('Mesaj hakkınız tükendi! Lütfen paket satın alın.');
-                backToChatList();
-                return;
-            }
-
-            messageBalance -= 1;
-            updateBalanceDisplay();
-
-            var myName = currentUserProfile.isRegistered ? currentUserProfile.name : 'Misafir';
-
-            if(!chatDatabase[activeChatUser]) {
-                chatDatabase[activeChatUser] = { avatar: activeChatAvatar, online: true, messages: [] };
-            }
-
-            chatDatabase[activeChatUser].messages.push({ id: Date.now(), sender: myName, type: 'text', content: text, time: getCurrentTimeStr() });
-            localStorage.setItem('kismet_chatDatabase', JSON.stringify(chatDatabase));
-            input.value = '';
-            renderChatMessages();
-
-            if (messageBalance <= 0) {
-                alert('⚠️ Mesaj hakkınız bitti! Sohbete devam etmek için 80 mesajlık yeni paket alabilirsiniz.');
-                setTimeout(function() {
-                    backToChatList();
-                }, 1000);
-                return;
-            }
-
-            setTimeout(function() {
-                if(activeChatUser) {
-                    document.getElementById('activeChatStatusText').innerText = 'yazıyor...';
-                }
-            }, 800);
-
-            setTimeout(function() {
-                if(activeChatUser) {
-                    document.getElementById('activeChatStatusText').innerText = '● Çevrimiçi';
-                    chatDatabase[activeChatUser].messages.push({ id: Date.now() + 1, sender: activeChatUser, type: 'text', content: 'Harika, memnun oldum!', time: getCurrentTimeStr() });
-                    localStorage.setItem('kismet_chatDatabase', JSON.stringify(chatDatabase));
-                    renderChatMessages();
-                }
-            }, 2000);
         }
 
         function sendChatImage(inputElement) {
@@ -928,11 +928,13 @@
                     contentHtml = '<div>' + m.content + '</div>';
                 }
 
+                var tickHtml = isMe ? '<span style="color: #34b7f1; font-size: 11px; font-weight: bold;">✓✓</span>' : '';
+
                 html += '<div class="' + bubbleClass + '">' +
                     deleteBtnHtml +
-                    '<div style="font-size: 10px; font-weight: bold; color: #888; margin-bottom: 2px;">' + m.sender + '</div>' +
+                    '<div style="font-size: 10px; font-weight: bold; color: #888; margin-bottom: 2px; cursor: pointer;" onclick="openProfileByName(\'' + m.sender + '\')">' + m.sender + '</div>' +
                     contentHtml +
-                    '<div class="msg-time">' + msgTime + '</div>' +
+                    '<div class="msg-time-row"><span>' + msgTime + '</span>' + tickHtml + '</div>' +
                 '</div>';
             }
             list.innerHTML = html;
@@ -941,7 +943,9 @@
 
         function saveUserProfile() {
             var fullName = document.getElementById('regName').value.trim();
+            var dobInput = document.getElementById('regDob').value;
             var city = document.getElementById('regCity').value.trim();
+            var statusText = document.getElementById('regStatus').value.trim();
             var gender = document.getElementById('regGender').value;
             var marital = document.getElementById('regMarital').value;
             var height = document.getElementById('regHeight').value.trim();
@@ -949,21 +953,42 @@
             var profilePicInput = document.getElementById('userProfilePicInput');
 
             if(!fullName) { alert('Lütfen ad soyad girin!'); return; }
+            if(!dobInput) { alert('Lütfen doğum tarihinizi seçin!'); return; }
 
-            currentUserProfile.name = fullName;
+            // Doğum tarihinden yaş hesaplama
+            var birthDate = new Date(dobInput);
+            var today = new Date();
+            var age = today.getFullYear() - birthDate.getFullYear();
+            var m = today.getMonth() - birthDate.getMonth();
+            if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+                age--;
+            }
+
+            if (age < 18) {
+                alert('⚠️ Yaş Sınırı: 18 yaşından küçüklerin kayıt olması yasaktır! Hesabınız oluşturulamadı.');
+                return;
+            }
+
+            currentUserProfile.name = fullName + ', ' + age;
             currentUserProfile.city = city ? city + ', Türkiye' : 'Türkiye';
+            currentUserProfile.status = statusText;
             currentUserProfile.gender = gender || 'Erkek';
             currentUserProfile.marital = marital || 'Bekar';
             currentUserProfile.height = height || '175';
             currentUserProfile.weight = weight || '70';
             currentUserProfile.isRegistered = true;
 
+            if(currentUserProfile.gallery.length === 0) {
+                currentUserProfile.gallery.push(currentUserProfile.image);
+            }
+
             var fullProfileObj = {
-                name: fullName,
+                name: currentUserProfile.name,
                 city: currentUserProfile.city,
                 gender: currentUserProfile.gender,
-                image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=500',
-                status: '',
+                image: currentUserProfile.image,
+                gallery: currentUserProfile.gallery,
+                status: statusText,
                 music: '',
                 marital: currentUserProfile.marital,
                 height: currentUserProfile.height,
@@ -975,12 +1000,15 @@
                 reader.onload = function(e) {
                     currentUserProfile.image = e.target.result;
                     fullProfileObj.image = e.target.result;
+                    if(currentUserProfile.gallery.indexOf(e.target.result) === -1) {
+                        currentUserProfile.gallery.unshift(e.target.result);
+                    }
                     registeredProfiles.unshift(fullProfileObj);
                     
                     localStorage.setItem('kismet_userProfile', JSON.stringify(currentUserProfile));
                     localStorage.setItem('kismet_registeredProfiles', JSON.stringify(registeredProfiles));
 
-                    alert('✅ Profil başarıyla yüklendi ve kaydedildi!');
+                    alert('✅ Profiliniz ve yaşınız başarıyla onaylandı!');
                     switchPage('anasayfa', document.getElementsByClassName('nav-item')[0]);
                     renderProfiles();
                 };
@@ -991,9 +1019,27 @@
                 localStorage.setItem('kismet_userProfile', JSON.stringify(currentUserProfile));
                 localStorage.setItem('kismet_registeredProfiles', JSON.stringify(registeredProfiles));
 
-                alert('✅ Profil kaydedildi!');
+                alert('✅ Profiliniz ve yaşınız başarıyla onaylandı!');
                 switchPage('anasayfa', document.getElementsByClassName('nav-item')[0]);
                 renderProfiles();
+            }
+        }
+
+        // --- GOOGLE PLAY ZORUNLU: HESAP VE VERİLERİ SİLME FONKSİYONU ---
+        function deleteMyAccount() {
+            if (confirm("⚠️ UYARI: Hesabınızı ve tüm verilerinizi (profil, fotoğraflar, mesajlar, paylaşımlar) kalıcı olarak silmek istediğinize emin misiniz? Bu işlem geri alınamaz!")) {
+                localStorage.removeItem('kismet_userProfile');
+                localStorage.removeItem('kismet_registeredProfiles');
+                localStorage.removeItem('kismet_userPosts');
+                localStorage.removeItem('kismet_chatDatabase');
+                localStorage.removeItem('kismet_termsAccepted');
+                localStorage.removeItem('kismet_messageBalance');
+                localStorage.removeItem('kismet_activePage');
+                localStorage.removeItem('kismet_sentRequests');
+                localStorage.removeItem('kismet_blockedUsers');
+                
+                alert("Hesabınız ve tüm verileriniz başarıyla silindi. Uygulama yeniden başlatılıyor.");
+                location.reload();
             }
         }
 
@@ -1006,11 +1052,13 @@
                 var shortName = p.name.split(',')[0].trim();
                 if (blockedUsers[shortName]) continue;
 
+                var pGal = p.gallery ? JSON.stringify(p.gallery).replace(/"/g, '&quot;') : '[]';
+
                 html += '<div class="profile-card-grid">' +
-                    '<div class="profile-card-image-bg" style="background-image: url(\'' + p.image + '\');" onclick="openProfileDetail(\'' + p.name + '\', \'' + p.city + '\', \'' + (p.gender || 'Belirtilmemiş') + '\', \'' + p.image + '\', \'' + (p.status || '') + '\', \'' + (p.music || '') + '\', \'' + (p.marital || '') + '\', \'' + (p.height || '') + '\', \'' + (p.weight || '') + '\')"></div>' +
+                    '<div class="profile-card-image-bg" style="background-image: url(\'' + p.image + '\');" onclick="openProfileDetail(\'' + p.name + '\', \'' + p.city + '\', \'' + (p.gender || 'Belirtilmemiş') + '\', \'' + p.image + '\', \'' + (p.status || '') + '\', \'' + (p.music || '') + '\', \'' + (p.marital || '') + '\', \'' + (p.height || '') + '\', \'' + (p.weight || '') + '\', ' + pGal + ')"></div>' +
                     '<div class="profile-card-gradient"></div>' +
                     '<div class="profile-card-info">' +
-                        '<h4 onclick="openProfileDetail(\'' + p.name + '\', \'' + p.city + '\', \'' + (p.gender || 'Belirtilmemiş') + '\', \'' + p.image + '\', \'' + (p.status || '') + '\', \'' + (p.music || '') + '\', \'' + (p.marital || '') + '\', \'' + (p.height || '') + '\', \'' + (p.weight || '') + '\')">' + p.name + '</h4>' +
+                        '<h4 onclick="openProfileDetail(\'' + p.name + '\', \'' + p.city + '\', \'' + (p.gender || 'Belirtilmemiş') + '\', \'' + p.image + '\', \'' + (p.status || '') + '\', \'' + (p.music || '') + '\', \'' + (p.marital || '') + '\', \'' + (p.height || '') + '\', \'' + (p.weight || '') + '\', ' + pGal + ')">' + p.name + '</h4>' +
                         '<p>' + p.city + ' <span style="color:#28a745;">● Çevrimiçi</span></p>' +
                         '<div class="profile-card-actions">' +
                             '<button class="btn-card-like" onclick="event.stopPropagation(); alert(\'Beğenildi ❤️\')">❤️</button>' +
@@ -1171,9 +1219,9 @@
                     '<div class="post-stats"><span>' + likeCountText + '</span></div>' +
                     '<div class="post-actions">' +
                         '<button class="action-btn ' + likedClass + '" onclick="toggleLike(' + p.id + ')">' + likedText + '</button>' +
-                        '<button class="action-btn" onclick="toggleCommentBox(' + p.id + ')">💬 Yorum</button>' +
+                        '<button class="action-btn" onclick="toggleCommentBox(' + p.id + ')">💬 Yorum Yap</button>' +
                     '</div>' +
-                    '<div class="comment-section-box" id="commentBox_' + p.id + '" style="display: block;">' +
+                    '<div class="comment-section-box" id="commentBox_' + p.id + '" style="display:none;">' +
                         '<div class="comment-list">' + commentsHtml + '</div>' +
                         '<div class="comment-input-row">' +
                             '<input type="text" id="commentInput_' + p.id + '" placeholder="Yorum yaz...">' +
@@ -1183,6 +1231,69 @@
                 '</div>';
             }
             feedList.innerHTML = html;
+        }
+
+        // --- NUMARA VE KÜFÜR FİLTRESİ ---
+        function checkAndFilterMessage(text) {
+            var cleanText = text.replace(/[\s\-\(\)]/g, '');
+            var phoneRegex = /(05\d{9}|5\d{9})/;
+
+            if (phoneRegex.test(cleanText)) {
+                return {
+                    isValid: false,
+                    errorMsg: "⚠️ Güvenlik Gereği: Numaralar gönderilemez! Numara göndermek yasaktır. Mesajlar engellendi ve hakkınız düşmedi."
+                };
+            }
+            return { isValid: true };
+        }
+
+        // --- MESAJ GÖNDERME ---
+        function sendChatMessage() {
+            var input = document.getElementById('chatInputText');
+            var text = input.value.trim();
+            if(!text || !activeChatUser) return;
+
+            if (messageBalance <= 0) {
+                alert('Mesaj hakkınız tükendi!');
+                return;
+            }
+
+            var controlResult = checkAndFilterMessage(text);
+            if (!controlResult.isValid) {
+                alert(controlResult.errorMsg);
+                return;
+            }
+
+            messageBalance -= 1;
+            updateBalanceDisplay();
+
+            var myName = currentUserProfile.isRegistered ? currentUserProfile.name : 'Misafir';
+
+            if(!chatDatabase[activeChatUser]) {
+                chatDatabase[activeChatUser] = { avatar: activeChatAvatar, online: true, messages: [] };
+            }
+
+            chatDatabase[activeChatUser].messages.push({ id: Date.now(), sender: myName, type: 'text', content: text, time: getCurrentTimeStr() });
+            localStorage.setItem('kismet_chatDatabase', JSON.stringify(chatDatabase));
+            input.value = '';
+            renderChatMessages();
+
+            setTimeout(function() {
+                if(activeChatUser) {
+                    var statusEl = document.getElementById('activeChatStatusText');
+                    if(statusEl) statusEl.innerText = 'yazıyor...';
+                }
+            }, 800);
+
+            setTimeout(function() {
+                if(activeChatUser) {
+                    var statusEl = document.getElementById('activeChatStatusText');
+                    if(statusEl) statusEl.innerText = '● Çevrimiçi';
+                    chatDatabase[activeChatUser].messages.push({ id: Date.now() + 1, sender: activeChatUser, type: 'text', content: 'Harika, memnun oldum!', time: getCurrentTimeStr() });
+                    localStorage.setItem('kismet_chatDatabase', JSON.stringify(chatDatabase));
+                    renderChatMessages();
+                }
+            }, 2000);
         }
     </script>
 </body>
